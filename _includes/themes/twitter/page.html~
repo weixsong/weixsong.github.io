@@ -1,0 +1,6 @@
+<div class="row">
+  {{ content }}
+</div>
+
+<div class="row">
+</div>
