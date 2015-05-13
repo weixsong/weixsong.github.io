@@ -14,7 +14,7 @@
 
     <!-- styles -->
     <link href="{{ ASSET_PATH }}/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="{{ ASSET_PATH }}/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="{{ ASSET_PATH }}/bootstrap/css/style.css" rel="stylesheet">
     <link href="{{ ASSET_PATH }}/bootstrap/css/carousel.css" rel="stylesheet">
   </head>
 
