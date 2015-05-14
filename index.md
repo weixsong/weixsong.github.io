@@ -67,21 +67,21 @@ title: Wei SONG's blog
       <h2>OCR Demo</h2>
       <p>Android OCR Demo is a simple Android app that shows how to do OCR on Android platform. You could follow this simple example and develop your non-trivial OCR Android app.
       This OCR demo use Tess-two as OCR library then we don't need to care about native code.</p>
-      <p><a class="btn btn-default" href="https://github.com/weixsong/libra" target="_blank" role="button">View details &raquo;</a></p>
+      <p><a class="btn btn-default" href="https://github.com/weixsong/libra#ocrdemo" target="_blank" role="button">View details &raquo;</a></p>
     </div><!-- /.col-lg-4 -->
 
     <div class="col-lg-4">
       <img class="img-circle" src="{{ site.url }}/assets/index_page/badge_PA200px.jpg" alt="working hard image" width="140" height="140">
       <h2>NDK Demo</h2>
       <p>Android NDK demo is a simple Android app that shows you how to develop native code by NDK, and it also shows you how to compile your native code, how to use native code in Android project, how to pass parameters between java and native c/c++ code.</p>
-      <p><a class="btn btn-default" href="https://github.com/weixsong/libra" target="_blank" role="button">View details &raquo;</a></p>
+      <p><a class="btn btn-default" href="https://github.com/weixsong/libra#ndkdemo" target="_blank" role="button">View details &raquo;</a></p>
     </div><!-- /.col-lg-4 -->
 
     <div class="col-lg-4">
       <img class="img-circle" src="{{ site.url }}/assets/index_page/badge_QA200px.jpg" alt="Coding hard image" width="140" height="140">
       <h2>ASM Demo</h2>
       <p>Android ASM demo is a relative complex Android app that shows you how to face detection on Android platform by OpenCV, how to develop native code by NDK, how to do ASM landmarks location by Stasm package, it also shows how to do these jobs efficiently by Thread and AsyncTask.</p>
-      <p><a class="btn btn-default" href="https://github.com/weixsong/libra" target="_blank" role="button">View details &raquo;</a></p>
+      <p><a class="btn btn-default" href="https://github.com/weixsong/libra#asmdemo" target="_blank" role="button">View details &raquo;</a></p>
     </div><!-- /.col-lg-4 -->
   </div><!-- /.row -->
 
@@ -89,66 +89,34 @@ title: Wei SONG's blog
   <hr class="featurette-divider">
 
   <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-        <div class="col-md-5">
-          <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-        </div>
-      </div>
+    <div class="col-md-7">
+      <h2 class="featurette-heading">Android OCR Demo</h2>
+      <h3>Simple app shows you how to do OCR on Android platform</h3>
+      <p class="lead">1. This project use <a href="https://github.com/weixsong/tess-two">tess-two</a> project to do OCR, using tess-two project make it simple to develop OCR Android project, you don't need to do any native coding and compiling work, just reference this project and use it as java package.</p>
+      <p class="lead">2. Currently this Android OCR Demo support 2 languages: English and Chinese, effect for English is better than Chinese. If you want to do other language OCR, please goto <a href="https://code.google.com/p/tesseract-ocr/">tesseract-ocr</a> project and download the trained model for your specific language, or you could train your OCR model yourself, but model training is non-trivial task.</p>
+      <p class="lead">3. Alought OCR is developed by c, by using <a href="https://github.com/weixsong/tess-two">tess-two</a> project, you don't need to care about Android hardware platform (armeabi, armeabi-v7a, mips, x86), usually for NDK development, hardware platform is really trivial thing you need to care about.</p>
+      <p><a class="btn btn-default" href="https://github.com/weixsong/libra#ocrdemo" target="_blank" role="button">View details &raquo;</a></p>
+    </div>
+    <div class="col-md-5">
+      <img class="featurette-image img-responsive center-block" src="{{ site.url }}/assets/index_page/ocr_app_demo.png" alt="ocr demo image">
+    </div>
+  </div>
 
-      <hr class="featurette-divider">
+  <hr class="featurette-divider">
 
-      <div class="row featurette">
-        <div class="col-md-7 col-md-push-5">
-          <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-        <div class="col-md-5 col-md-pull-7">
-          <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <!-- /END THE FEATURETTES -->
+  <div class="row featurette">
+    <div class="col-md-7 col-md-push-5">
+      <h2 class="featurette-heading">Android NDK Demo</h2>
+      <h3>Simple app shows you how to develop native c/c++ by NDK on Android platform</h3>
+      <p class="lead">1. This project is really a simple demo project that shows you how to configure native code development and how to develop native code in c/c++, how to compile native code by NDK, how to call native code in Android project by JNI.</p>
+      <p class="lead">2. The main purpose of this project is give you an example that showing how to configure NDK development environment. Please goto <a href="https://github.com/weixsong/libra#ndkdemo">NDK Demo</a> to see the detailed setup instructions.</p>
+      <p class="lead">3. In order to develop your customized Android app by native code, you need to understand basic mechanism of JNI.</p>
+      <p><a class="btn btn-default" href="https://github.com/weixsong/libra" target="_blank" role="button">View details &raquo;</a></p>
+    </div>
+    <div class="col-md-5 col-md-pull-7">
+      <img class="featurette-image img-responsive center-block" src="{{ site.url }}/assets/index_page/ndk_demo.png" alt="android ndk develop image">
+    </div>
+  </div>
+  <!-- /END THE FEATURETTES -->
 </div><!-- /.container -->
-
-<div class="page-header">
-  <h1>{{ page.title }} <small></small></h1>
-</div>
-
-Read [Jekyll Quick Start](http://jekyllbootstrap.com/usage/jekyll-quick-start.html)
-
-Complete usage and documentation available at: [Jekyll Bootstrap](http://jekyllbootstrap.com)
-
-## Update Author Attributes
-
-In `_config.yml` remember to specify your own data:
-
-    title : My Blog =)
-
-    author :
-      name : Name Lastname
-      email : blah@email.test
-      github : username
-      twitter : username
-
-The theme should reference these variables whenever needed.
-    
-## Sample Posts
-
-This blog contains sample posts which help stage pages and blog data.
-When you don't need the samples anymore just delete the `_posts/core-samples` folder.
-
-    $ rm -rf _posts/core-samples
-
-Here's a sample "posts list".
-
-<ul class="posts">
-  {% for post in site.posts %}
-    <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
-  {% endfor %}
-</ul>
 
