@@ -27,43 +27,7 @@ As a refinement, it is sufficient to mark the numbers in step 3 starting from p<
 
 The jave implement of Sieve of Eratosthenes is as:
 {% highlight java %}
-package com.wesong.algs;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Primer {
-
-	/**
-	 * verify if a given number is prime
-	 * @param num: input number
-	 * @return
-	 */
-	public static boolean isPrime(int num) {
-		if (num < 2) {
-			throw new IllegalArgumentException("num should >=2");
-		}
-
-		if (num == 2) {
-			return true;
-		}
-
-		for (int i = 2; i * i <= num; i++) {
-			if (num % i == 0) {
-				return false;
-			}
-		}
-
-		return true;
-	}
-
-	/**
-	 * Get a list of prime by Erichsen Sieve
-	 * Time complexity: O(nloglogn), Space complexity: O(n)
-	 * range: [2, range]
-	 * @param range
-	 * @return
-	 */
 	public static List<Integer> getPrimebyErichsenSieve(int range) {
 		if (range < 2) {
 			throw new IllegalArgumentException("range should >= 2");
@@ -98,55 +62,59 @@ public class Primer {
 
 		return primeList;
 	}
-	
-	/**
-	 * get a list of Prime by simple method
-	 * range: [2, range]
-	 * @param range
-	 * @return
-	 */
-	public static List<Integer> getPrimebySimpleMethod(int range) {
-		if (range < 2) {
-			throw new IllegalArgumentException("range should >= 2");
-		}
 
-		List<Integer> primeList = new ArrayList<Integer>();
-		for (int i = 2; i <= range; i++) {
-			if (isPrime(i)) {
-				primeList.add(i);
-			}
-		}
+{% endhighlight %}
 
-		return primeList;
-	}
+## Complexity
 
-	/**
-	 * find the largest prime that less than given n
-	 * @param n
-	 * @return
-	 */
-	public static int findLargestPrimeLessThanGivenNum(int n) {
-		if (n < 2) {
-			throw new IllegalArgumentException("range should >= 2");
-		}
-		
-		for (int i = n - 1; i >= 2; i--) {
-			if (isPrime(i)) {
-				return i;
-			}
-		}
-		
-		return 2;
-	}
-	
-	/**
-	 * find largest prime that less than given n, by Erichsen Sieve
-	 * this method is really time consuming. And if for large n, will lead to
-	 * out of memory.
-	 * @param n
-	 * @return
-	 */
-	public static int findLPTGbyES(int n) {
+Time complexity for Sieve of Eratosthenes is **O(nloglogn)**, and Space complexity is **O(n)**. **O(nloglogn)** is nearly a linear algorithm, and is much faster than the other function I wrote in the java code.
+
+In the above java code, I also implemented another brute-force algorithm <code>getPrimebySimpleMethod()</code> to find primes, by running the algorithm to generate all primes between 0~1000000, 
+
+		// time for Erichsen Sieve, range: 1000000
+		long startMili=System.currentTimeMillis();
+		List<Integer> list3 = Primer.getPrimebyErichsenSieve(1000000);
+		long endMili=System.currentTimeMillis();
+		System.out.println("time："+(endMili - startMili) + "ms");
+		System.out.flush();
+
+		// time for simple method, range: 1000000
+		startMili=System.currentTimeMillis();
+		List<Integer> list4 = Primer.getPrimebySimpleMethod(1000000);
+		endMili=System.currentTimeMillis();
+		System.out.println("time："+(endMili - startMili) + "ms");
+		System.out.flush();
+
+we could see the running time differnece is:
+
+
+    time：28ms
+    time：319ms
+
+
+Sieve of Eratosthenes is much better than <code>getPrimebySimpleMethod()</code> brute-force method.
+
+For the above brute-force algorithm, the time complexity is: **O(n<sup>3/2</sup>)**.
+
+### Complexity Analysis
+
+For the **O(nloglogn)** analysis for Sieve of Eratosthenes, please refer to [this](http://en.wikipedia.org/wiki/Sieve_of_Eratosthenes) and [this](http://en.wikipedia.org/wiki/Divergence_of_the_sum_of_the_reciprocals_of_the_primes).
+
+I found it's a little hard to write equation in YAML Markdown, so sorry for no equation in this post.
+
+Because Sieve of Eratosthenes need  **O(n)** Space complexity, so if you want to get a very very large range primes, you need to segment the range and process each segment separately, if not, you will run into out of memory.
+
+## Find the largest prime that less than given x
+
+Sometimes maybe we need to find the largest prime less than a given number, such as **x**, then how to do this? Actually I have made some search and did not found perfect solution.
+
+### by using Sieve of Eratosthenes
+
+By this method, we still find the primes from 2 to **x**, and until we found the largest prime that less than **x**. But remember that the space requirement is **O(n)**, be careful for large **x**.
+
+{% highlight java %}
+
+    public static int findLPTGbyES(int n) {
 		if (n < 2) {
 			throw new IllegalArgumentException("range should >= 2");
 		}
@@ -163,14 +131,14 @@ public class Primer {
 
 		int largestPrime = 2;
 		// sieve
-		for (int i = 2; i * i <= n; i++) {
+		for (int i = 2; i <= n; i++) {
 			if (isPrime[i]) {
 				if (i >= n) {
 					break;
 				}
 
 				largestPrime = i;
-				for (int j = i * i; j <= n; j += i) {
+				for (int j = 2 * i; j <= n; j += i) {
 					isPrime[j] = false;
 				}
 			}
@@ -179,55 +147,83 @@ public class Primer {
 		return largestPrime;
 	}
 
-	public static void main(String[] args) {
-		List<Integer> list = Primer.getPrimebyErichsenSieve(100);
-		System.out.println("number: " + list.size());
-		System.out.println(list);
+{% endhighlight %}
 
-		List<Integer> list2 = Primer.getPrimebySimpleMethod(100);
-		System.out.println("number: " + list2.size());
-		System.out.println(list2);
+Time complexity for this is **O(nloglogn)**.
 
-		long startMili=System.currentTimeMillis();
-		List<Integer> list3 = Primer.getPrimebyErichsenSieve(1000000);
-		long endMili=System.currentTimeMillis();
-		System.out.println("time："+(endMili - startMili) + "ms");
+### find largest prime from back-end
 
-		startMili=System.currentTimeMillis();
-		List<Integer> list4 = Primer.getPrimebySimpleMethod(1000000);
-		endMili=System.currentTimeMillis();
-		System.out.println("time："+(endMili - startMili) + "ms");
+Begin from x - 1, check if x - 1 is a prime, if not, check x - 2, until find a prime.
+Time complexity for this method is **O(n<sup>3/2</sup>)**.
 
-		startMili=System.currentTimeMillis();
-		int prime = Primer.findLargestPrimeLessThanGivenNum(Integer.MAX_VALUE);
-		System.out.println("largest prime: " + prime);
-		endMili=System.currentTimeMillis();
-		System.out.println("time："+(endMili - startMili) + "ms");
+{% highlight java %}
 
-		// following will lead to out of memory
-//		startMili=System.currentTimeMillis();
-//		int prime2 = Primer.findLPTGbyES(Integer.MAX_VALUE - 1);
-//		System.out.println("largest prime: " + prime2);
-//		endMili=System.currentTimeMillis();
-//		System.out.println("time："+(endMili - startMili) + "ms");
+	public static boolean isPrime(int num) {
+		if (num < 2) {
+			throw new IllegalArgumentException("num should >=2");
+		}
+
+		if (num == 2) {
+			return true;
+		}
+
+		for (int i = 2; i * i <= num; i++) {
+			if (num % i == 0) {
+				return false;
+			}
+		}
+
+		return true;
 	}
-}
 
 {% endhighlight %}
 
-## Complexity
+{% highlight java %}
 
-Time complexity for Sieve of Eratosthenes is **O(nloglogn)**, and Space complexity is **O(n)**. **O(nloglogn)** is nearly a linear algorithm, and is much faster than the other function I wrote in the java code.
+	public static int findLargestPrimeLessThanGivenNum(int n) {
+		if (n < 2) {
+			throw new IllegalArgumentException("range should >= 2");
+		}
+		
+		for (int i = n - 1; i >= 2; i--) {
+			if (isPrime(i)) {
+				return i;
+			}
+		}
+		
+		return 2;
+	}
 
-In the above java code, I also implemented another brute-force algorithm <code>getPrimebySimpleMethod()</code> to find primes, by running the algorithm to generate all primes between 0~1000000, we could see the running time differnece is:
+{% endhighlight %}
 
+### Compare
 
-    time：28ms
-    time：319ms
+Theoretically **O(nloglogn)** is much better than **O(n<sup>3/2</sup>)**.
+**but**  for small x, such as <code>Integer.MAX_VALUE</code>, in my experiment It seems find largest prime from back-end is faster, maybe this is because the x is relatively small for prime. Another point you need to pay attention is for using Sieve of Eratosthenes, the space complexity is **O(n)**, be careful about your memory.
 
+		// find largest prime by brute-force from back end
+		startMili=System.currentTimeMillis();
+		int prime = Primer.findLargestPrimeLessThanGivenNum(1000000);
+		System.out.println("largest prime: " + prime);
+		endMili=System.currentTimeMillis();
+		System.out.println("time："+(endMili - startMili) + "ms");
+		System.out.flush();
 
-Sieve of Eratosthenes is much better than <code>getPrimebySimpleMethod()</code> brute-force method.
+		// find largest prime by Erichsen Sieve
+		startMili=System.currentTimeMillis();
+		int prime2 = Primer.findLPTGbyES(1000000);
+		System.out.println("largest prime: " + prime2);
+		endMili=System.currentTimeMillis();
+		System.out.println("time："+(endMili - startMili) + "ms");
+		System.out.flush();
 
-For the above brute-force algorithm, the time complexity is: **O(n<sup>3/2</sup>)**.
+The test results:
 
-\\(x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}\\)
+    largest prime: 999983
+    time：0ms
+    largest prime: 999983
+    time：15ms
+
+## Source Code
+
+Source code <code>Primer.java</code> is [here]({{ site.url }}/assets/code/java/Primer.java).
