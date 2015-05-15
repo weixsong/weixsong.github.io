@@ -217,12 +217,17 @@ public class Primer {
 
 ## Complexity
 
-Time complexity for Sieve of Eratosthenes is **O(nloglogn)**, and Space complexity is **O(n)**, **O(nloglogn)** is nearly a linear algorithm, and is much faster than the other function I wrote in the java code.
+Time complexity for Sieve of Eratosthenes is **O(nloglogn)**, and Space complexity is **O(n)**. **O(nloglogn)** is nearly a linear algorithm, and is much faster than the other function I wrote in the java code.
 
-In the above java code, I also implemented another brute-force algorithm <code>getPrimebySimpleMethod()</code> to find primes, by running the algorithm to generate all primes between 0~1000000, we could see the differnece is:
-```
-time：28ms
-time：319ms
-```
+In the above java code, I also implemented another brute-force algorithm <code>getPrimebySimpleMethod()</code> to find primes, by running the algorithm to generate all primes between 0~1000000, we could see the running time differnece is:
+
+
+    time：28ms
+    time：319ms
+
 
 Sieve of Eratosthenes is much better than <code>getPrimebySimpleMethod()</code> brute-force method.
+
+For the above brute-force algorithm, the time complexity is: **O(n<sup>3/2</sup>)**.
+
+\\(x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}\\)

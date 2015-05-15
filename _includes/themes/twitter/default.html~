@@ -16,6 +16,7 @@
     <link href="{{ ASSET_PATH }}/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="{{ ASSET_PATH }}/bootstrap/css/style.css" rel="stylesheet">
     <link href="{{ ASSET_PATH }}/bootstrap/css/carousel.css" rel="stylesheet">
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
   </head>
 
   <body>
@@ -75,3 +76,4 @@
     <script src="{{ ASSET_PATH }}/bootstrap/js/bootstrap.min.js"></script>
   </body>
 </html>
+
