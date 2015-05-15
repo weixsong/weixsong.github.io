@@ -23,7 +23,7 @@ Sieve of Eratosthenes method, is very efficient, the algorithm is:
 And, there are some small tricks that could refine the algorithm.
 As a refinement, it is sufficient to mark the numbers in step 3 starting from p<sup>2</sup>, as all the smaller multiples of p will have already been marked at that point. This means that the algorithm is allowed to terminate in step 4 when p<sup>2</sup> is greater than n.
 
-## java code
+## Java code
 
 The jave implement of Sieve of Eratosthenes is as:
 {% highlight java %}
@@ -215,7 +215,14 @@ public class Primer {
 
 {% endhighlight %}
 
-## time complexity
+## Complexity
 
-Time complexity for Sieve of Eratosthenes is **O(nloglogn)**, 
+Time complexity for Sieve of Eratosthenes is **O(nloglogn)**, and Space complexity is **O(n)**, **O(nloglogn)** is nearly a linear algorithm, and is much faster than the other function I wrote in the java code.
 
+In the above java code, I also implemented another brute-force algorithm <code>getPrimebySimpleMethod()</code> to find primes, by running the algorithm to generate all primes between 0~1000000, we could see the differnece is:
+```
+time：28ms
+time：319ms
+```
+
+Sieve of Eratosthenes is much better than <code>getPrimebySimpleMethod()</code> brute-force method.
