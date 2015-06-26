@@ -1,10 +1,4 @@
----
-layout: post
-title: "sequence,permutation,combination in python"
-description: ""
-category: 
-tags: []
----
+
 
 
 # 获取指定长度得所有序列
