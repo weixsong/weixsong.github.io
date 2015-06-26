@@ -7,27 +7,6 @@ tags: []
 ---
 
 
-{% highlight python %}
-{% raw %}
-Python 2.7.9 (default, Dec 19 2014, 06:05:48)
-[GCC 4.2.1 Compatible Apple LLVM 6.0 (clang-600.0.56)] on darwin
-Type "help", "copyright", "credits" or "license" for more information.
->>> def generate_new_list_with(my_list=[], element=None):
-...     my_list.append(element)
-...     return my_list
-...
->>> list_1 = generate_new_list_with(element=1)
->>> list_1
-[1]
->>> list_2 = generate_new_list_with(element=2)
->>> list_2
-[1, 2]
->>>
-{% endraw %}
-{% endhighlight %}
-
-
-
 # 获取指定长度得所有序列
 
 通过事件来表述这个序列，即n重伯努利实验（二项分布）的所有可能结果。例如时间a表示为： **a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]**, 假设每次实验为从a中选择一个数字，那么进行n次实验，获得所有可能得序列。
