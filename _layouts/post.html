@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 <div class="row">
   <div class="page-header">
     <h1>{{ page.title }}</h1>
@@ -5,13 +9,15 @@
     <div><span>{{ page.date | date_to_long_string }}</span></div>
 
     {% unless page.tags == empty %}
-    <div class="tag">
-      <h4>Tags</h4>
-      <ul class="tag_box inline">
-        {% assign tags_list = page.tags %}
-        <!-- tags: wesong -->
-      </ul>
-    </div>
+      <div class="tag">
+        <h4>Tags</h4>
+        <ul class="tag_box inline">
+          {% assign tags_list = page.tags %}
+          {% for tag in tags_list %} 
+    	    <li><a unable="true">{{ tag }} </a></li>
+          {% endfor %}
+        </ul>
+      </div>
     {% endunless %}
   </div>
 

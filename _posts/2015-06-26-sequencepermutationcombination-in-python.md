@@ -1,9 +1,9 @@
 ---
-layout: default
+layout: post
 title: "sequence,permutation,combination in python"
 description: ""
 category: 
-tags: []
+tags: [algorithm, test]
 ---
 
 
