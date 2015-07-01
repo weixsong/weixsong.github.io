@@ -2,7 +2,7 @@
 layout: default
 title: "find prime by Sieve of Eratosthenes"
 description: ""
-category: 
+category: algorithm
 tags: [algorithm]
 ---
 
