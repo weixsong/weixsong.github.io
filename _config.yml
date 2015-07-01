@@ -31,3 +31,7 @@ production_url : http://weixsong.github.io
 root : /
 home : /
 
+archive_path: /archive.html
+categories_path : /categories.html
+tags_path : /tags.html
+

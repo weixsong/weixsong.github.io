@@ -1,26 +1,22 @@
 ---
 layout: default
-title: Pages 
-header: Pages
+title: Tags
+header: Posts By Tag
 group: navigation
 ---
 
 <ul class="tag_box inline">
-  {% assign categories_list = site.categories %}
-
-  {% for category in categories_list %} 
-    <li><a href="{{ BASE_PATH }}{{ site.categories_path }}#{{ category[0] }}-ref">
-    		{{ category[0] | join: "/" }} <span>{{ category[1].size }}</span>
-    </a></li>
+  {% assign tags_list = site.tags %}  
+  {% for tag in tags_list %} 
+   	<li><a href="{{ BASE_PATH }}{{ site.tags_path }}#{{ tag[0] }}-ref">{{ tag[0] }} <span>{{ tag[1].size }}</span></a></li>
   {% endfor %}
-
-  {% assign categories_list = nil %}
 </ul>
 
-<h2>All Pages</h2>
-<ul>
-  {% assign pages_list = site.pages %}
 
+{% for tag in site.tags %} 
+<h2 id="{{ tag[0] }}-ref">{{ tag[0] }}</h2>
+<ul>
+  {% assign pages_list = tag[1] %}
   {% for p in pages_list %}
     {% if p.title != null %}
       {% if group == null or group == p.group %}
@@ -33,4 +29,5 @@ group: navigation
     {% endif %}
   {% endfor %}
 </ul>
+{% endfor %}
 
