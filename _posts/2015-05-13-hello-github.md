@@ -5,7 +5,6 @@ description: "My first post on Github"
 category: others
 tags: [introduction]
 ---
-{% include JB/setup %}
 
 It seems more and more people are porting their blogs to Github, so I spend some time to familiar with Jekyll, Bootstrap, YAML Markdown and something, then I wrote my first blog on Github by YAML Markdown.
 

@@ -1,11 +1,10 @@
 ---
-layout: post
+layout: default
 title: "find prime by Sieve of Eratosthenes"
 description: ""
 category: 
 tags: [algorithm]
 ---
-{% include JB/setup %}
 
 ## Problem define
 

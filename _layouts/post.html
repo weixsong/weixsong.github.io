@@ -1,7 +1,40 @@
----
-theme :
-  name : twitter
-layout: default
----
-{% include JB/setup %}
-{% include themes/twitter/post.html %}
+<div class="row">
+  <div class="page-header">
+    <h1>{{ page.title }}</h1>
+
+    <div><span>{{ page.date | date_to_long_string }}</span></div>
+
+    {% unless page.tags == empty %}
+    <div class="tag">
+      <h4>Tags</h4>
+      <ul class="tag_box inline">
+        {% assign tags_list = page.tags %}
+        <!-- tags: wesong -->
+      </ul>
+    </div>
+    {% endunless %}
+  </div>
+
+  <div class="page-content">
+    <div class="raw">
+      {{ content }}
+    </div>
+
+    <div class="pager">
+      <ul style="padding-left: 0px;">
+        {% if page.previous %}
+        <li class="previous"><a href="{{ BASE_PATH }}{{ page.previous.url }}" title="{{ page.previous.title }}">&larr; Prev</a></li>
+        {% else %}
+        <li class="previous disabled"><a>&larr; Previous</a></li>
+        {% endif %}
+
+        {% if page.next %}
+        <li class="next" style="float: left"><a href="{{ BASE_PATH }}{{ page.next.url }}" title="{{ page.next.title }}">Next &rarr;</a></li>
+        {% else %}
+        <li class="next disabled" style="float: left"><a>Next &rarr;</a>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</div>
+

@@ -1,8 +1,7 @@
 ---
-layout: page
+layout: default
 title: Wei SONG's blog
 ---
-{% include JB/setup %}
 
 <!-- Carousel
 ================================================== -->

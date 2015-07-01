@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: "sequence,permutation,combination in python"
 description: ""
 category: 
@@ -13,18 +13,16 @@ tags: []
 
 比如，进行两次实验， n=2, 那么可能得结果有100个。这里因为每次实验都是相对独立的，所以每次实验的结果可能出现重复，也就是说在获得所有可能的序列中，可以存在重复得值。
 
-
-
 ## 递归实现，DFS（深度优先遍历）
 ```python
 def gen_all_sequence_dfs(outcomes, length):
     """
     generate all sequence by dfs
-    
+
     outcomes: all the possible event, a list
     length: how many times does the sequence repeat, sequence length
     """
-    
+
     res = []
     seq = []
     dfs_sequence(outcomes, length, seq, res)
