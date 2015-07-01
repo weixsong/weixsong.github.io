@@ -39,12 +39,19 @@
               </div>
               <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ site.root }}" class="active">Home</a></li>
-                    <li><a href="/archive.html">Archive</a></li>
-                    <li><a href="/categories.html">Categories</a></li>
-                    <li><a href="/pages.html">Pages</a></li>
-                    <li><a href="/tags.html">Tags</a></li>
-                    <li><a href="/contact.html">Contact</a></li>
+                  {% assign pages_list = site.pages %}
+                  {% assign group = 'navigation' %}
+                  {% for node in pages_list %}
+                    {% if node.title != null %}
+                      {% if group == null or group == node.group %}
+      	                {% if page.url == node.url %}
+      	                    <li class="active"><a href="{{ BASE_PATH }}{{node.url}}" style="color: #fff">{{node.title}}</a></li>
+      	                {% else %}
+      	                    <li><a href="{{ BASE_PATH }}{{node.url}}">{{node.title}}</a></li>
+      	                {% endif %}
+                      {% endif %}
+                    {% endif %}
+                  {% endfor %}
                 </ul>
 		        <ul class="nav navbar-nav pull-right">
 			      <li>

@@ -32,7 +32,7 @@ group: navigation
       	  {% if page.url == p.url %}
       	  <li class="active"><a href="{{ BASE_PATH }}{{node.url}}" class="active">{{p.title}}</a></li>
       	  {% else %}
-      	  <li><a href="{{ BASE_PATH }}{{p.url}}">{{p.title}} {{ p.date | date_to_long_string }}</a></li>
+      	  <li><a href="{{ BASE_PATH }}{{p.url}}">{{p.title}} </a> &raquo; {{ p.date | date: "%B %e, %Y" }}</li>
       	  {% endif %}
         {% endif %}
       {% endif %}
