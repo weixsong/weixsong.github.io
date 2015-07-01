@@ -14,7 +14,7 @@ title: Wei SONG's blog
   </ol>
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <img class="first-slide" src="{{ site.url }}/assets/index_page/slide-new-img-cover.jpg" alt="First slide">
+      <img class="first-slide" src="{{ BASE_PATH }}/assets/index_page/slide-new-img-cover.jpg" alt="First slide">
       <div class="container">
         <div class="carousel-caption">
           <h1>Example headline.</h1>
@@ -24,7 +24,7 @@ title: Wei SONG's blog
       </div>
     </div>
     <div class="item">
-      <img class="second-slide" src="{{ site.url }}/assets/index_page/2.jpg" alt="Second slide">
+      <img class="second-slide" src="{{ BASE_PATH }}/assets/index_page/2.jpg" alt="Second slide">
       <div class="container">
         <div class="carousel-caption">
           <h1>Another example headline.</h1>
@@ -34,7 +34,7 @@ title: Wei SONG's blog
       </div>
     </div>
     <div class="item">
-      <img class="third-slide" src="{{ site.url }}/assets/index_page/3.jpg" alt="Third slide">
+      <img class="third-slide" src="{{ BASE_PATH }}/assets/index_page/3.jpg" alt="Third slide">
       <div class="container">
         <div class="carousel-caption">
           <h1>One more for good measure.</h1>
@@ -52,7 +52,7 @@ title: Wei SONG's blog
     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
-</div><!-- /.carousel -->
+</div>
 
 <!-- Marketing messaging and featurettes
 ================================================== -->
@@ -62,7 +62,7 @@ title: Wei SONG's blog
   <!-- Three columns of text below the carousel -->
   <div class="row">
     <div class="col-lg-4">
-      <img class="img-circle" src="{{ site.url }}/assets/index_page/OCR.jpg" alt="ocr demo image" width="140" height="140">
+      <img class="img-circle" src="{{ BASE_PATH }}/assets/index_page/OCR.jpg" alt="ocr demo image" width="140" height="140">
       <h2>OCR Demo</h2>
       <p>Android OCR Demo is a simple Android app that shows how to do OCR on Android platform. You could follow this simple example and develop your non-trivial OCR Android app.
       This OCR demo use Tess-two as OCR library then we don't need to care about native code.</p>
@@ -70,14 +70,14 @@ title: Wei SONG's blog
     </div><!-- /.col-lg-4 -->
 
     <div class="col-lg-4">
-      <img class="img-circle" src="{{ site.url }}/assets/index_page/badge_PA200px.jpg" alt="working hard image" width="140" height="140">
+      <img class="img-circle" src="{{ BASE_PATH }}/assets/index_page/badge_PA200px.jpg" alt="working hard image" width="140" height="140">
       <h2>NDK Demo</h2>
       <p>Android NDK demo is a simple Android app that shows you how to develop native code by NDK, and it also shows you how to compile your native code, how to use native code in Android project, how to pass parameters between java and native c/c++ code.</p>
       <p><a class="btn btn-default" href="https://github.com/weixsong/libra#ndkdemo" target="_blank" role="button">View details &raquo;</a></p>
     </div><!-- /.col-lg-4 -->
 
     <div class="col-lg-4">
-      <img class="img-circle" src="{{ site.url }}/assets/index_page/badge_QA200px.jpg" alt="Coding hard image" width="140" height="140">
+      <img class="img-circle" src="{{ BASE_PATH }}/assets/index_page/badge_QA200px.jpg" alt="Coding hard image" width="140" height="140">
       <h2>ASM Demo</h2>
       <p>Android ASM demo is a relative complex Android app that shows you how to face detection on Android platform by OpenCV, how to develop native code by NDK, how to do ASM landmarks location by Stasm package, it also shows how to do these jobs efficiently by Thread and AsyncTask.</p>
       <p><a class="btn btn-default" href="https://github.com/weixsong/libra#asmdemo" target="_blank" role="button">View details &raquo;</a></p>
@@ -113,9 +113,9 @@ title: Wei SONG's blog
       <p><a class="btn btn-default" href="https://github.com/weixsong/libra" target="_blank" role="button">View details &raquo;</a></p>
     </div>
     <div class="col-md-5 col-md-pull-7">
-      <img class="featurette-image img-responsive center-block" src="{{ site.url }}/assets/index_page/ndk_demo.png" alt="android ndk develop image">
+      <img class="featurette-image img-responsive center-block" src="{{ BASE_PATH }}/assets/index_page/ndk_demo.png" alt="android ndk develop image">
     </div>
   </div>
   <!-- /END THE FEATURETTES -->
-</div><!-- /.container -->
+</div>
 
