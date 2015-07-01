@@ -16,7 +16,7 @@ tags: []
 
 
 ## 递归实现，DFS（深度优先遍历）
-{% highlight python %}
+```python
 def gen_all_sequence_dfs(outcomes, length):
     """
     generate all sequence by dfs
@@ -57,7 +57,7 @@ def run_dfs_example1():
     print "Sequences were", seq_outcomes
 
 run_dfs_example1()
-{% endhighlight %}
+```python
 
 运行输出结果：
 
