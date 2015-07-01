@@ -16,7 +16,7 @@
     <link href="{{ ASSET_PATH }}/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="{{ ASSET_PATH }}/bootstrap/css/style.css" rel="stylesheet">
     <link href="{{ ASSET_PATH }}/bootstrap/css/carousel.css" rel="stylesheet">
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+    <link href="{{ ASSET_PATH }}/bootstrap/css/syntax.css" rel="stylesheet">
   </head>
 
   <body>
