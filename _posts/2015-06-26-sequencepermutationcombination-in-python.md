@@ -57,7 +57,7 @@ def run_dfs_example1():
     print "Sequences were", seq_outcomes
 
 run_dfs_example1()
-```python
+```
 
 运行输出结果：
 
