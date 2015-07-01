@@ -14,7 +14,7 @@ layout: default
         <ul class="tag_box inline">
           {% assign tags_list = page.tags %}
           {% for tag in tags_list %} 
-    	    <li><a unable="true">{{ tag }} </a></li>
+    	    <li><a href="{{ BASE_PATH }}{{ site.tags_path }}#{{ tag }}-ref">{{ tag }} <span>{{ tag[1].size }}</span></a></li>
           {% endfor %}
         </ul>
       </div>
