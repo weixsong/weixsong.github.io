@@ -117,5 +117,6 @@ title: Wei SONG's blog
     </div>
   </div>
   <!-- /END THE FEATURETTES -->
+  <hr class="featurette-heading">
 </div>
 
