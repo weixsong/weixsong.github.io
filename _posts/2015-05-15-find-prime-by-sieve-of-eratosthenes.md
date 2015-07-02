@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "find prime by Sieve of Eratosthenes"
+title: "Find Prime by Sieve of Eratosthenes"
 description: ""
 category: algorithm
 tags: [algorithm]
