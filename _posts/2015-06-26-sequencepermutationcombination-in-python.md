@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Sequence, Permutation, Combination in python"
+title: "Sequence-Permutation-Combination in python"
 description: ""
 category: algorithm
 tags: [algorithm, test]
