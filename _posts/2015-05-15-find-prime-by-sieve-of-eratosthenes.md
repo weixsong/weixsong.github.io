@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 title: "find prime by Sieve of Eratosthenes"
 description: ""
 category: algorithm
