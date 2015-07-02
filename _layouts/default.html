@@ -17,6 +17,7 @@
     <link href="{{ BASE_PATH }}/assets/bootstrap/css/style.css" rel="stylesheet">
     <link href="{{ BASE_PATH }}/assets/bootstrap/css/carousel.css" rel="stylesheet">
     <link href="{{ BASE_PATH }}/assets/bootstrap/css/syntax.css" rel="stylesheet">
+    <link href="{{ BASE_PATH }}/assets/bootstrap/css/sticky-footer-navbar.css" rel="stylesheet">
 
   </head>
 
@@ -24,62 +25,57 @@
 
     <!-- NAVBAR
     ================================================== -->
-    <div class="navbar-wrapper">
-        <div class="container">
-          <nav class="navbar navbar-inverse navbar-static-top">
-            <div class="container">
-              <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" style="color: #fff" href="{{ site.root }}">{{ site.title }}</a>
-              </div>
-              <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                  {% assign pages_list = site.pages %}
-                  {% assign group = 'navigation' %}
-                  {% for node in pages_list %}
-                    {% if node.title != null %}
-                      {% if group == null or group == node.group %}
-      	                {% if page.url == node.url %}
-      	                    <li class="active"><a href="{{ BASE_PATH }}{{node.url}}">{{node.title}}</a></li>
-      	                {% else %}
-      	                    <li><a href="{{ BASE_PATH }}{{node.url}}">{{node.title}}</a></li>
-      	                {% endif %}
-                      {% endif %}
-                    {% endif %}
-                  {% endfor %}
-                </ul>
-		        <ul class="nav navbar-nav pull-right">
-			      <li>
-			        <a target="_blank" href="https://github.com/weixsong">Github</a>
-			      </li>
-		        </ul>
-              </div>
-            </div>
-          </nav>
-        </div>
-    </div>
-
-    <div class="content-wraper" style="margin-top:80px">
-
+    <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" style="color: #000" href="{{ site.root }}">{{ site.title }}</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            {% assign pages_list = site.pages %}
+            {% assign group = 'navigation' %}
+            {% for node in pages_list %}
+              {% if node.title != null %}
+                {% if group == null or group == node.group %}
+                  {% if page.url == node.url %}
+                     <li class="active"><a href="{{ BASE_PATH }}{{node.url}}">{{node.title}}</a></li>
+                  {% else %}
+                     <li><a href="{{ BASE_PATH }}{{node.url}}">{{node.title}}</a></li>
+                  {% endif %}
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          </ul>
+	      <ul class="nav navbar-nav pull-right">
+		    <li>
+		      <a target="_blank" href="https://github.com/weixsong">Github</a>
+		    </li>
+		  </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Begin page content -->
+    <div class="container">
         <div class="content">
           {{ content }}
         </div>
-
-        <hr class="featurette-divider">
-        <!-- FOOTER -->
-        <footer style="float: bottom">
-          <p class="pull-right"><a href="#">Back to top</a></p>
-          <p>&copy; {{ site.author.name }} {{ site.time | date: '%Y' }}  
-          <a href="https://github.com/weixsong">https://github.com/weixsong</a> watkinsong@163.com</p>
-        </footer>
-      </div>
     </div>
+
+    <!-- Begin footer -->
+    <footer class="footer">
+      <div class="container">
+          <p class="pull-right text-muted"><a href="#">Back to top</a></p>
+          <p class="text-muted">&copy; {{ site.author.name }} {{ site.time | date: '%Y' }}  
+          <a href="https://github.com/weixsong">https://github.com/weixsong</a> watkinsong@163.com</p>
+      </div>
+    </footer>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
