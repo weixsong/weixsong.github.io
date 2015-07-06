@@ -2,7 +2,7 @@
 layout: post
 title: "Hello Github"
 description: "My first post on Github"
-category: others
+category: 
 tags: [introduction]
 ---
 

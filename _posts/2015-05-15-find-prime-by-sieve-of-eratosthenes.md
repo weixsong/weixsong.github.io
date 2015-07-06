@@ -3,7 +3,7 @@ layout: post
 title: "Find Prime by Sieve of Eratosthenes"
 description: ""
 category: algorithm
-tags: [algorithm]
+tags: [prime number]
 ---
 
 ## Problem define

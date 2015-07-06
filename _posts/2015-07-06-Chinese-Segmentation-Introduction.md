@@ -2,8 +2,8 @@
 layout: post
 title: "Chinese Segmentation Introduction"
 description: ""
-category: algorithm
-tags: [NLP]
+category: NLP
+tags: [chinese, segment, ambiguity]
 ---
 
 # 1. Chinese Segmentation Introduction

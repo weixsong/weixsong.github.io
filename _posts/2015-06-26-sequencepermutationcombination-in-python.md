@@ -3,7 +3,7 @@ layout: post
 title: "Sequence-Permutation-Combination in python"
 description: ""
 category: algorithm
-tags: [algorithm, test]
+tags: [sequence, permutation, combination]
 ---
 
 
