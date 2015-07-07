@@ -92,7 +92,7 @@
         </div>
         <div class="span9">
           <section id="Main"><h1>Elasticlunr.js</h1>
-<p><a href="https://travis-ci.org/olivernn/lunr.js"><img src="https://travis-ci.org/olivernn/lunr.js.png?branch=master" alt="Build Status"></a></p><p>Elasticlunr.js is developed based on Lunr.js, but more flexible that lunr.js. Elasticlunr.js provides Query-Time boosting and field search.<br />A bit like Solr, but much smaller and not as bright, but also provide flexible configuration and query-time boosting.</p><h1>Key Features Comparing with Lunr.js</h1>
+<p><a href="https://travis-ci.org/olivernn/lunr.js"><img src="https://travis-ci.org/olivernn/lunr.js.png?branch=master" alt="Build Status"></a></p><p>Elasticlunr.js is developed based on Lunr.js, but more flexible than lunr.js. Elasticlunr.js provides Query-Time boosting and field search.<br />A bit like Solr, but much smaller and not as bright, but also provide flexible configuration and query-time boosting.</p><h1>Key Features Comparing with Lunr.js</h1>
 <ul>
 <li><ol>
 <li><strong>Query-Time boosting</strong>, you don&#39;t need to setup boosting weight in index building procedure, this make it more flexible that you could try different boosting scheme.</li>
@@ -164,7 +164,7 @@ index.addDoc(doc2);
 }]
 </code></pre>
 <p><a href="http://weixsong.github.io/assets/elasticlunr/docs/index.html">API documentation</a> is available, as well as a <a href="http://weixsong.github.io/assets/elasticlunr/docs/index.html">full working example</a>.</p><h2>Description</h2>
-<p>Elasticlunr.js is developed based on Lunr.js, but more flexible that lunr.js. Elasticlunr.js provides Query-Time boosting and field search.<br />A bit like Solr, but much smaller and not as bright, but also provide flexible configuration and query-time boosting.</p><h2>Why</h2>
+<p>Elasticlunr.js is developed based on Lunr.js, but more flexible than lunr.js. Elasticlunr.js provides Query-Time boosting and field search.<br />A bit like Solr, but much smaller and not as bright, but also provide flexible configuration and query-time boosting.</p><h2>Why</h2>
 <ol>
 <li>In some system, you don&#39;t want to deploy any Web Server(such as Apache, Nginx, etc.), you only provide some static web pages and provide search function in client side. Then you could build index in previous and load index in client side.</li>
 <li>Provide offline search functionality. For some documents, user usually download these documents, you could build index and put index in the documents package, then provide offline search functionality.</li>
@@ -172,7 +172,90 @@ index.addDoc(doc2);
 <li>For mobile device, Iphone or Android phone, network traffic maybe very expensive, then provide offline search is a good choice.</li>
 </ol>
 <h2>Installation</h2>
-<p>Simply include the elasticlunr.js source file in the page that you want to use it.  Elasticlunr.js is supported in all modern browsers.</p><p>Browsers that do not support ES5 will require a JavaScript shim for Elasticlunr.js to work. You can either use <a href="https://github.com/olivernn/augment.js">Augment.js</a>, <a href="https://github.com/kriskowal/es5-shim">ES5-Shim</a> or any library that patches old browsers to provide an ES5 compatible JavaScript environment.</p><h2>Contributing</h2>
+<p>Simply include the elasticlunr.js source file in the page that you want to use it.  Elasticlunr.js is supported in all modern browsers.</p><p>Browsers that do not support ES5 will require a JavaScript shim for Elasticlunr.js to work. You can either use <a href="https://github.com/olivernn/augment.js">Augment.js</a>, <a href="https://github.com/kriskowal/es5-shim">ES5-Shim</a> or any library that patches old browsers to provide an ES5 compatible JavaScript environment.</p><h1>Documentation</h1>
+<p>This part only contain important apects of elasticlunr.js, for the whole documentation, please go to <a href="http://weixsong.github.io/assets/elasticlunr/docs/index.html">API documentation</a>.</p><h2>1. Build Index</h2>
+<p>When you first create a index instance, you need to specify which field you want to index. If you did not specify which field to index, then no field will be searchable for your documents.<br />You could specify fields by:</p><pre><code class="lang-javascript">var index = elasticlunr(function () {
+    this.addField(&#39;title&#39;);
+    this.addField(&#39;body&#39;);
+    this.setRef(&#39;id&#39;);
+});
+</code></pre>
+<p>You could also set the document reference by <code>this.setRef(&#39;id&#39;)</code>, if you did not set document ref, elasticlunr.js will use <strong>&#39;id&#39;</strong> as default.</p><p>You could do the above index setup as followings:</p><pre><code class="lang-javascript">var index = elasticlunr();
+index.addField(&#39;title&#39;);
+index.addField(&#39;body&#39;);
+index.setRef(&#39;id&#39;);
+</code></pre>
+<p>Default supported language of elasticlunr.js is English, if you want to use elasticlunr.js to index other language documents, then you need to use elasticlunr.js combined with <a href="https://github.com/weixsong/lunr-languages">lunr-languages</a>.<br />Assume you&#39;re using lunr-language in Node.js envrionment, you could import lunr-language as followings:</p><pre><code class="lang-javascript">var lunr = require(&#39;./lib/lunr.js&#39;);
+require(&#39;./lunr.stemmer.support.js&#39;)(lunr);
+require(&#39;./lunr.de.js&#39;)(lunr);
+
+var idx = lunr(function () {
+    // use the language (de)
+    this.use(lunr.de);
+    // then, the normal lunr index initialization
+    this.field(&#39;title&#39;)
+    this.field(&#39;body&#39;)
+});
+</code></pre>
+<p>For more details, please go to <a href="https://github.com/weixsong/lunr-languages">lunr-languages</a>.</p><h2>Add document to index</h2>
+<p>Add document to index is very simple, just prepare you document in JSON format, then add it to index.</p><pre><code class="lang-javascript">var doc1 = {
+    &quot;id&quot;: 1,
+    &quot;title&quot;: &quot;Oracle released its latest database Oracle 12g&quot;,
+    &quot;body&quot;: &quot;Yestaday Oracle has released its new database Oracle 12g, this would make more money for this company and lead to a nice profit report of annual year.&quot;
+}
+
+var doc2 = {
+    &quot;id&quot;: 2,
+    &quot;title&quot;: &quot;Oracle released its profit report of 2015&quot;,
+    &quot;body&quot;: &quot;As expected, Oracle released its profit report of 2015, during the good sales of database and hardware, Oracle&#39;s profit of 2015 reached 12.5 Billion.&quot;
+}
+
+index.addDoc(doc1);
+index.addDoc(doc2);
+</code></pre>
+<p>If your JSON document contains field that not configured in index, then that field will not be indexed, which means that field is not searchable.</p><h2>Remove document from index</h2>
+<p>Elasticlunr.js support remove a document from index, just provide JSON document to <code>elasticlunr.Index.prototype.removeDoc()</code> function.</p><p>For example:</p><pre><code class="lang-javascript">var doc = {
+    &quot;id&quot;: 1,
+    &quot;title&quot;: &quot;Oracle released its latest database Oracle 12g&quot;,
+    &quot;body&quot;: &quot;Yestaday Oracle has released its new database Oracle 12g, this would make more money for this company and lead to a nice profit report of annual year.&quot;
+}
+
+index.removeDoc(doc);
+</code></pre>
+<p>Remove a document will remove each token of that document&#39;s each field from field-specified inverted index.</p><h2>Update a document in index</h2>
+<p>Elasticlunr.js support update a document in index, just provide JSON document to <code>elasticlunr.Index.prototype.update()</code> function.</p><p>For example:</p><pre><code class="lang-javascript">var doc = {
+    &quot;id&quot;: 1,
+    &quot;title&quot;: &quot;Oracle released its latest database Oracle 12g&quot;,
+    &quot;body&quot;: &quot;Yestaday Oracle has released its new database Oracle 12g, this would make more money for this company and lead to a nice profit report of annual year.&quot;
+}
+
+index.update(doc);
+</code></pre>
+<h2>Query from Index</h2>
+<p>Elasticlunr.js provides flexible query configuration, supports query-time boosting and Boolean logic setting.<br />You could setup a configuration tell elasticlunr.js how to do query-time boosting, which field to search in, how to do the boolean logic.<br />Or you could just use it by simply provide a query string, this will aslo works perfectly because the scoring mechanism is very efficient.</p><ol>
+<li>Simple Query</li>
+</ol>
+<p><strong>Because elasticlunr.js has a very perfect scoring mechanism, so for most of your requirement, simple would be easy to meet your requirement.</strong></p><pre><code class="lang-javascript">index.search(&quot;Oracle database profit&quot;);
+</code></pre>
+<p>Output is a results array, each element of results array is an Object contain a <code>ref</code> field and a <code>score</code> field.<br /><code>ref</code> is the document reference.<br /><code>score</code> is the similarity measurement.</p><p>Results array is sorted descent by <code>score</code>.</p><ol>
+<li>Configuration Query</li>
+</ol>
+<p>2.1 <strong>Query-Time Boosting</strong></p><p>Setup which fields to search in by passing in a JSON configuration, and setup boosting for each search field.<br />If you setup this configuration, then elasticlunr.js will only search the query string in the specified fields with boosting weight.</p><p><strong>The scoring mechanism used in elasticlunr.js is very complex</strong>, please goto <a href="https://www.elastic.co/guide/en/elasticsearch/guide/current/practical-scoring-function.html">details</a> for more information.</p><pre><code class="lang-javascript">index.search(&quot;Oracle database profit&quot;, {
+    fields: {
+        title: {boost: 2},
+        body: {boost: 1}
+    }
+});
+</code></pre>
+<p>2.2 <strong>Boolean Model</strong></p><p>Elasticlunr.js also support boolean logic setting, if no boolean logic is setted, elasticlunr.js use &quot;OR&quot; logic defaulty. By &quot;OR&quot; default logic, elasticlunr.js could reach a high <strong>Recall</strong>.</p><pre><code class="lang-javascript">index.search(&quot;Oracle database profit&quot;, {
+    fields: {
+        title: {boost: 2},
+        body: {boost: 1}
+    },
+    boolean: &quot;OR&quot;
+});
+</code></pre>
+<p>Boolean operation is performed based on field. This means that if you choose &quot;AND&quot; logic, documents with all the query tokens in the query field will be returned as a field results. If you query in multiple fields, different field results will be merged together to give a final query results.</p><h1>Contributing</h1>
 <p>See the <a href="CONTRIBUTING.mdown"><code>CONTRIBUTING.mdown</code> file</a>.</p></section>
         </div>
       </div>
