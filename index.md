@@ -84,8 +84,11 @@ title: Wei SONG's blog
     </div><!-- /.col-lg-4 -->
   </div><!-- /.row -->
 
+  <div class='ll'>
+    <div class="col-md-12" style="margin-left: -15px;margin-bottom: 30px; padding-bottom: 15px; border-bottom:1px solid rgba(7,94,115,0.3);"></div>
+  </div>
+
   <!-- START THE FEATURETTES -->
-  <hr class="featurette-divider">
 
   <div class="row featurette">
     <div class="col-md-7">
@@ -101,7 +104,7 @@ title: Wei SONG's blog
     </div>
   </div>
 
-  <hr class="featurette-divider">
+  <div class="col-md-12" style="margin-left: -15px;margin-bottom: 30px; padding-bottom: 15px; border-bottom:1px solid rgba(7,94,115,0.3);"></div>
 
   <div class="row featurette">
     <div class="col-md-7 col-md-push-5">
@@ -117,6 +120,6 @@ title: Wei SONG's blog
     </div>
   </div>
   <!-- /END THE FEATURETTES -->
-  <hr class="featurette-heading">
+  <div class="col-md-12" style="margin-left: -15px;margin-bottom: 30px; padding-bottom: 15px; border-bottom:1px solid rgba(7,94,115,0.3);"></div>
 </div>
 
