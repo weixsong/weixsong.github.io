@@ -1,0 +1,262 @@
+
+<!DOCTYPE html>
+<html>
+
+<article>
+  <header>
+	<h1>Fast WaveGlow: A Flow-based Neural Vocoder with Enhanced Speed</h1>
+  </header>
+</article>
+
+<p><b>Authors:</b> Wei Song, Guanghui Xu, Zhengchen Zhang, Chao Zhang, Xiaodong He, Bowen Zhou </p>
+
+<div><b>Abstract:</b> Neural vocoder, such as WaveGlow, has become an important component in recent high-quality text-to-speech (TTS) systems. 
+In this paper, we propose Fast WaveGlow, which is a flow-based generative model serving as an efficient neural vocoder. Similar to WaveGlow, Fast WaveGlow has a normalizing flow backbone where each flow consists of a coupling layer and a 1×1 invertible convolution. 
+To enhance the speed without sacrificing the quality of the synthesized speech, 
+Fast WaveGlow improves WaveGlow in the following aspects. 
+First, the WaveNet-style transformation network in WaveGlow is replaced with an FFTNet-style dilated convolution network. 
+Next, to reduce the computation cost, group convolution is applied to both audio and local condition features, and a shared local condition is integrated into each flow. At last, an auxiliary training task is added on top of the middle layers of the model, which can prevent the gradient vanishing problem. 
+As a result, Fast WaveGlow can reduce the number of floating-point operations required to generate one-second audio and the number of model parameters both by more than 10 times. Experimental results show that Fast WaveGlow can reduce real-world inference time cost by more than twice, 
+without any obvious reduction in the quality of the synthesized speech.
+</div>
+
+<p><b></b> </p>
+
+<p><b>Paper link:</b> </p>
+
+
+<head>
+<meta charset="UTF-8">
+<title>Wave Demo</title>
+</head>
+
+<body>
+<h2>Style control</h2></a>
+<h3>1. Interpolation</h3></a>
+
+    1." He had many years ago received such a description. "
+    <blockquote>
+    <table>
+    <tr>
+    <td align=center width=120> </td><td align=center width=300>reference audio</td><td align=center width=300>generated audio</td> 
+    </tr>
+    <tr>
+	<tr><td>reference A</td><td><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_control/interpolate/b3_2300103_0_style1.wav" controls=""></audio></td><td><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_control/interpolate/0_wavenet.wav" controls=""></audio></td></tr>
+	
+	<tr><td>interpolated <b>z</b></td><td> </td><td><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_control/interpolate/2_wavenet.wav" controls=""></audio></td></tr>
+	
+	<tr><td>interpolated <b>z</b></td><td> </td><td><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_control/interpolate/4_wavenet.wav" controls=""></audio></td></tr>
+	
+	<tr><td>reference B</td><td><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_control/interpolate/b1_3800040_0_style1.wav" controls=""></audio></td><td><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_control/interpolate/7_wavenet.wav" controls=""></audio></td></tr>
+	
+    </tr>
+    </table>	
+    </blockquote>
+
+<h3>2. Disentangled factors</h3></a>
+
+	1." I suppose I may as well stay the night , "
+	<blockquote>
+    <table>
+    <tr>
+	<tr><td>pitch height</td><td><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_control/disentangle/pitch1_wavenet.wav" controls=""></audio></td><td><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_control/disentangle/pitch2_wavenet.wav" controls=""></audio></td><td><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_control/disentangle/pitch3_wavenet.wav" controls=""></audio></td></tr>
+
+	<tr><td>local pitch variation</td><td><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_control/disentangle/flat1_wavenet.wav" controls=""></audio></td><td><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_control/disentangle/flat2_wavenet.wav" controls=""></audio></td><td><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_control/disentangle/flat3_wavenet.wav" controls=""></audio></td></tr>	
+    </tr>
+    </table>	
+    </blockquote>
+
+
+<h3>3. Combination</h3></a>
+
+	1." I suppose I may as well stay the night , "
+    <blockquote>
+    <table>
+    <tr>
+    <td align=center width=120><b>z</b>=A</td><td align=center width=300><b>z</b>=B</td><td align=center width=300><b>z</b>=A+B</td> 
+    </tr>
+    <tr>
+	<tr><td><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_control/combine/a_wavenet.wav" controls=""></audio></td><td><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_control/combine/b_wavenet.wav" controls=""></audio></td><td><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_control/combine/com_wavenet.wav" controls=""></audio></td></tr>
+	
+    </tr>
+    </table>	
+    </blockquote>  
+  
+<h2>Style transfer</h2></a>
+<h3>1. Parallel transfer</h3></a>
+   <p class="sample">
+    1." Didn't you know this was the twenty-eighth of August ? "
+    <blockquote>
+    <table>
+    <tr>
+    <td align=center width=300>reference audio</td><td align=center width=300>GST baseline model</td><td align=center width=300>proposed model</td>    
+    </tr>
+    <tr>
+    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/parallel/ref/03.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/parallel/baseline/03.wav" controls=""></audio></td>
+	<td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/parallel/vae/03.wav" controls=""></audio></td>
+    </tr>
+    </table>
+    </blockquote>
+	2. She was at a loss for an answer .
+    <blockquote>
+    <table>
+    <tr>
+    <td align=center width=300>reference audio</td><td align=center width=300>GST baseline model</td><td align=center width=300>proposed model</td> 
+    </tr>
+    <tr>
+    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/parallel/ref/61.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/parallel/baseline/61.wav" controls=""></audio></td>
+	<td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/parallel/vae/61.wav" controls=""></audio></td>
+    </tr>
+    </table>	
+    </blockquote>
+	3." I s'pose it's because I am Ojo the Unlucky that everyone who tries to help me gets into trouble . "
+    <blockquote>
+    <table>
+    <tr>
+    <td align=center width=300>reference audio</td><td align=center width=300>GST baseline model</td><td align=center width=300>proposed model</td> 
+    </tr>
+    <tr>
+    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/parallel/ref/36.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/parallel/baseline/36.wav" controls=""></audio></td>
+	<td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/parallel/vae/36.wav" controls=""></audio></td>
+    </tr>
+    </table>	
+    </blockquote>
+	4." When thou hast shown me a little love , thou mockest me ! "
+    <blockquote>
+    <table>
+    <tr>
+    <td align=center width=300>reference audio</td><td align=center width=300>GST baseline model</td><td align=center width=300>proposed model</td> 
+    </tr>
+    <tr>
+    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/parallel/ref/56.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/parallel/baseline/56.wav" controls=""></audio></td>
+	<td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/parallel/vae/56.wav" controls=""></audio></td>
+    </tr>
+    </table>	
+    </blockquote>	
+	5. said the Queen of the Corn-market , in an indifferently grateful tone .
+    <blockquote>
+    <table>
+    <tr>
+    <td align=center width=300>reference audio</td><td align=center width=300>GST baseline model</td><td align=center width=300>proposed model</td> 
+    </tr>
+    <tr>
+    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/parallel/ref/62.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/parallel/baseline/62.wav" controls=""></audio></td>
+	<td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/parallel/vae/62.wav" controls=""></audio></td>
+    </tr>
+    </table>	
+    </blockquote>	
+	
+	
+  </p>   
+<h3>1. Non-parallel transfer</h3></a>
+   <p class="sample">
+   	<div>1. <i>reference text</i> : " I love you . Good-by - because I love you . "</div>
+   	<div > &ensp; <i>target text</i> : " She could not compose herself - Mr. Woodhouse would be alarmed - she had better go ; "</div>	
+    <blockquote>
+    <table>
+    <tr>
+    <td align=center width=300>reference audio</td><td align=center width=300>GST baseline model</td><td align=center width=300>proposed model</td> 
+    </tr>
+    <tr>
+    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/non-parallel/ref/19.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/non-parallel/baseline/19.wav" controls=""></audio></td>
+	<td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/non-parallel/vae/19.wav" controls=""></audio></td>
+    </tr>
+    </table>	
+    </blockquote>   
+
+	<div>2. <i>reference text</i> : " Oh , what lovely trees ! "</div>
+   	<div > &ensp; <i>target text</i> : said the Queen of the Corn-market , in an indifferently grateful tone .</div>	
+	
+    <blockquote>
+    <table>
+    <tr>
+    <td align=center width=300>reference audio</td><td align=center width=300>GST baseline model</td><td align=center width=300>proposed model</td> 
+    </tr>
+    <tr>
+    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/non-parallel/ref/27.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/non-parallel/baseline/27.wav" controls=""></audio></td>
+	<td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/non-parallel/vae/27.wav" controls=""></audio></td>
+    </tr>
+    </table>	
+    </blockquote>	
+		
+	
+	<div>3. <i>reference text</i> : " Find some one who is real wicked , and stay with him till he repents . In that way you can do some good in the world . "</div>
+   	<div > &ensp; <i>target text</i> : He called again : the valleys and farthest hills resounded as when the sailors invoked the lost Hylas on the Mysian shore ; but no sheep .</div>			   
+		
+    <blockquote>
+    <table>
+    <tr>
+    <td align=center width=300>reference audio</td><td align=center width=300>GST baseline model</td><td align=center width=300>proposed model</td> 
+    </tr>
+    <tr>
+    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/non-parallel/ref/25.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/non-parallel/baseline/25.wav" controls=""></audio></td>
+	<td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/non-parallel/vae/25.wav" controls=""></audio></td>
+    </tr>
+    </table>	
+    </blockquote>	
+
+	<div>4. <i>reference text</i> : " Whenever you say the word I'm ready to thrash any amount of reason into him that he's able to hold . "</div>
+   	<div > &ensp; <i>target text</i> : Oh , certainly not ; Lucy would stop with her cousin . Oh , no !</div>			   
+		
+    <blockquote>
+    <table>
+    <tr>
+    <td align=center width=300>reference audio</td><td align=center width=300>GST baseline model</td><td align=center width=300>proposed model</td> 
+    </tr>
+    <tr>
+    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/non-parallel/ref/03.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/non-parallel/baseline/03.wav" controls=""></audio></td>
+	<td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/non-parallel/vae/03.wav" controls=""></audio></td>
+    </tr>
+    </table>	
+    </blockquote>		
+
+
+
+
+	<div>5. <i>reference text</i> : " is the only place in Oz where a yellow butterfly can be found . "</div>
+   	<div > &ensp; <i>target text</i> : His shoulders were broad and strong , his hands were very strong .</div>			   
+		
+    <blockquote>
+    <table>
+    <tr>
+    <td align=center width=300>reference audio</td><td align=center width=300>GST baseline model</td><td align=center width=300>proposed model</td> 
+    </tr>
+    <tr>
+    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/non-parallel/ref/40.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/non-parallel/baseline/40.wav" controls=""></audio></td>
+	<td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/non-parallel/vae/40.wav" controls=""></audio></td>
+    </tr>
+    </table>	
+    </blockquote>
+
+	<div>6. <i>reference text</i> : " Thy mother is yonder woman with the scarlet letter , "</div>
+   	<div > &ensp; <i>target text</i> : Now it was finished - that is to say the design ; she must stitch it together .</div>	
+ 
+    <blockquote>
+    <table>
+    <tr>
+    <td align=center width=300>reference audio</td><td align=center width=300>GST baseline model</td><td align=center width=300>proposed model</td> 
+    </tr>
+    <tr>
+    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/non-parallel/ref/59.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/non-parallel/baseline/59.wav" controls=""></audio></td>
+	<td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/non-parallel/vae/59.wav" controls=""></audio></td>
+    </tr>
+    </table>	
+    </blockquote>
+	
+
+	
+  </p>    
+  
+ </body>
+</html>
