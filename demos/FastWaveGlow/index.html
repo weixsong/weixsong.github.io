@@ -62,7 +62,7 @@ without any obvious reduction in the quality of the synthesized speech.
         </tr>
 
         <tr>
-            <td align=center><audio src="./assets/records/LJ002-0261.wav" controls="" width="100px"></audio></td>
+            <td align=center><audio src="./assets/records/LJ002-0261.wav" controls=""></audio></td>
             <td align=center><audio src="./assets/baseline_blstm/LJ002-0261.wav" controls=""></audio></td>
             <td align=center><audio src="./assets/fastwg_blstm/LJ002-0261.wav" controls=""></audio></td>
             <td align=center><audio src="./assets/fastwg_blstm_g4/LJ002-0261.wav" controls=""></audio></td>
@@ -106,7 +106,7 @@ without any obvious reduction in the quality of the synthesized speech.
         </tr>
 
         <tr>
-            <td align=center><audio src="./assets/records/LJ003-0194.wav" controls="" width="100px"></audio></td>
+            <td align=center><audio src="./assets/records/LJ003-0194.wav" controls=""></audio></td>
             <td align=center><audio src="./assets/baseline_blstm/LJ003-0194.wav" controls=""></audio></td>
             <td align=center><audio src="./assets/fastwg_blstm/LJ003-0194.wav" controls=""></audio></td>
             <td align=center><audio src="./assets/fastwg_blstm_g4/LJ003-0194.wav" controls=""></audio></td>
@@ -150,7 +150,7 @@ without any obvious reduction in the quality of the synthesized speech.
         </tr>
 
         <tr>
-            <td align=center><audio src="./assets/records/LJ004-0177.wav" controls="" width="100px"></audio></td>
+            <td align=center><audio src="./assets/records/LJ004-0177.wav" controls=""></audio></td>
             <td align=center><audio src="./assets/baseline_blstm/LJ004-0177.wav" controls=""></audio></td>
             <td align=center><audio src="./assets/fastwg_blstm/LJ004-0177.wav" controls=""></audio></td>
             <td align=center><audio src="./assets/fastwg_blstm_g4/LJ004-0177.wav" controls=""></audio></td>
@@ -194,7 +194,7 @@ without any obvious reduction in the quality of the synthesized speech.
         </tr>
 
         <tr>
-            <td align=center><audio src="./assets/records/LJ004-0245.wav" controls="" width="100px"></audio></td>
+            <td align=center><audio src="./assets/records/LJ004-0245.wav" controls=""></audio></td>
             <td align=center><audio src="./assets/baseline_blstm/LJ004-0245.wav" controls=""></audio></td>
             <td align=center><audio src="./assets/fastwg_blstm/LJ004-0245.wav" controls=""></audio></td>
             <td align=center><audio src="./assets/fastwg_blstm_g4/LJ004-0245.wav" controls=""></audio></td>
@@ -238,7 +238,7 @@ without any obvious reduction in the quality of the synthesized speech.
         </tr>
 
         <tr>
-            <td align=center><audio src="./assets/records/LJ005-0169.wav" controls="" width="100px"></audio></td>
+            <td align=center><audio src="./assets/records/LJ005-0169.wav" controls=""></audio></td>
             <td align=center><audio src="./assets/baseline_blstm/LJ005-0169.wav" controls=""></audio></td>
             <td align=center><audio src="./assets/fastwg_blstm/LJ005-0169.wav" controls=""></audio></td>
             <td align=center><audio src="./assets/fastwg_blstm_g4/LJ005-0169.wav" controls=""></audio></td>
@@ -269,8 +269,226 @@ without any obvious reduction in the quality of the synthesized speech.
     </blockquote>
 
 <h2>Encode mel-spectrum by Conv1d</h2></a>
-    
 
-  
- </body>
+    1. "The poorer prisoners were not in abject want, as in other prisons,"
+    <blockquote>
+    <table>
+        <tr>
+            <td align=center>Record</td>
+            <td align=center>WaveGlow</td>
+            <td align=center>FastWG</td>
+            <td align=center>FastWG G4</td>
+            <td align=center>FastWG G8</td>
+            <td align=center>FastWG SLC</td>
+            <td align=center>FastWG SLC G8</td>
+        </tr>
+
+        <tr>
+            <td align=center><audio src="./assets/records/LJ002-0261.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/baseline_conv1d/LJ002-0261.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d/LJ002-0261.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_g4/LJ002-0261.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_g8/LJ002-0261.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_slc/LJ002-0261.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_slc_g8/LJ002-0261.wav" controls=""></audio></td>
+        </tr>
+
+        <tr>
+            <td align=center> </td>
+            <td align=center> </td>
+            <td align=center>FastWG*</td>
+            <td align=center> </td>
+            <td align=center>FastWG G8*</td>
+            <td align=center>FastWG SLC*</td>
+            <td align=center>FastWG SLC G8*</td>
+        </tr>
+        <tr>
+            <td align=center></td>
+            <td align=center></td>
+            <td align=center><audio src="./assets/baseline_conv1d_aux_loss/LJ002-0261.wav" controls=""></audio></td>
+            <td align=center></td>
+            <td align=center><audio src="./assets/baseline_conv1d_g8_aux_loss/LJ002-0261.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/baseline_conv1d_slc_aux_loss/LJ002-0261.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/baseline_conv1d_slc_g8_aux_loss/LJ002-0261.wav" controls=""></audio></td>
+        </tr>
+    </table>    
+    </blockquote>
+
+    2. "At another time there were fifty, one of whom had been under sentence a couple of years."
+    <blockquote>
+    <table>
+        <tr>
+            <td align=center>Record</td>
+            <td align=center>WaveGlow</td>
+            <td align=center>FastWG</td>
+            <td align=center>FastWG G4</td>
+            <td align=center>FastWG G8</td>
+            <td align=center>FastWG SLC</td>
+            <td align=center>FastWG SLC G8</td>
+        </tr>
+
+        <tr>
+            <td align=center><audio src="./assets/records/LJ003-0194.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/baseline_conv1d/LJ003-0194.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d/LJ003-0194.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_g4/LJ003-0194.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_g8/LJ003-0194.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_slc/LJ003-0194.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_slc_g8/LJ003-0194.wav" controls=""></audio></td>
+        </tr>
+
+        <tr>
+            <td align=center> </td>
+            <td align=center> </td>
+            <td align=center>FastWG*</td>
+            <td align=center> </td>
+            <td align=center>FastWG G8*</td>
+            <td align=center>FastWG SLC*</td>
+            <td align=center>FastWG SLC G8*</td>
+        </tr>
+        <tr>
+            <td align=center></td>
+            <td align=center></td>
+            <td align=center><audio src="./assets/baseline_conv1d_aux_loss/LJ003-0194.wav" controls=""></audio></td>
+            <td align=center></td>
+            <td align=center><audio src="./assets/baseline_conv1d_g8_aux_loss/LJ003-0194.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/baseline_conv1d_slc_aux_loss/LJ003-0194.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/baseline_conv1d_slc_g8_aux_loss/LJ003-0194.wav" controls=""></audio></td>
+        </tr>
+    </table>    
+    </blockquote>
+
+    3. "No prison dress was allowed; no reception-room was provided, no soap, towels, or baths."
+    <blockquote>
+    <table>
+        <tr>
+            <td align=center>Record</td>
+            <td align=center>WaveGlow</td>
+            <td align=center>FastWG</td>
+            <td align=center>FastWG G4</td>
+            <td align=center>FastWG G8</td>
+            <td align=center>FastWG SLC</td>
+            <td align=center>FastWG SLC G8</td>
+        </tr>
+
+        <tr>
+            <td align=center><audio src="./assets/records/LJ004-0177.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/baseline_conv1d/LJ004-0177.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d/LJ004-0177.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_g4/LJ004-0177.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_g8/LJ004-0177.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_slc/LJ004-0177.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_slc_g8/LJ004-0177.wav" controls=""></audio></td>
+        </tr>
+
+        <tr>
+            <td align=center> </td>
+            <td align=center> </td>
+            <td align=center>FastWG*</td>
+            <td align=center> </td>
+            <td align=center>FastWG G8*</td>
+            <td align=center>FastWG SLC*</td>
+            <td align=center>FastWG SLC G8*</td>
+        </tr>
+        <tr>
+            <td align=center></td>
+            <td align=center></td>
+            <td align=center><audio src="./assets/baseline_conv1d_aux_loss/LJ004-0177.wav" controls=""></audio></td>
+            <td align=center></td>
+            <td align=center><audio src="./assets/baseline_conv1d_g8_aux_loss/LJ004-0177.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/baseline_conv1d_slc_aux_loss/LJ004-0177.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/baseline_conv1d_slc_g8_aux_loss/LJ004-0177.wav" controls=""></audio></td>
+        </tr>
+    </table>    
+    </blockquote>
+
+    4. "Painters, plasterers, and carpenters were allowed to follow their handicrafts, with the reward of sixpence per diem and a double allowance of food."
+    <blockquote>
+    <table>
+        <tr>
+            <td align=center>Record</td>
+            <td align=center>WaveGlow</td>
+            <td align=center>FastWG</td>
+            <td align=center>FastWG G4</td>
+            <td align=center>FastWG G8</td>
+            <td align=center>FastWG SLC</td>
+            <td align=center>FastWG SLC G8</td>
+        </tr>
+
+        <tr>
+            <td align=center><audio src="./assets/records/LJ004-0245.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/baseline_conv1d/LJ004-0245.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d/LJ004-0245.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_g4/LJ004-0245.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_g8/LJ004-0245.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_slc/LJ004-0245.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_slc_g8/LJ004-0245.wav" controls=""></audio></td>
+        </tr>
+
+        <tr>
+            <td align=center> </td>
+            <td align=center> </td>
+            <td align=center>FastWG*</td>
+            <td align=center> </td>
+            <td align=center>FastWG G8*</td>
+            <td align=center>FastWG SLC*</td>
+            <td align=center>FastWG SLC G8*</td>
+        </tr>
+        <tr>
+            <td align=center></td>
+            <td align=center></td>
+            <td align=center><audio src="./assets/baseline_conv1d_aux_loss/LJ004-0245.wav" controls=""></audio></td>
+            <td align=center></td>
+            <td align=center><audio src="./assets/baseline_conv1d_g8_aux_loss/LJ004-0245.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/baseline_conv1d_slc_aux_loss/LJ004-0245.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/baseline_conv1d_slc_g8_aux_loss/LJ004-0245.wav" controls=""></audio></td>
+        </tr>
+    </table>    
+    </blockquote>
+
+    5. "but I indulge a hope that many of them will contract with the counties,"
+    <blockquote>
+    <table>
+        <tr>
+            <td align=center>Record</td>
+            <td align=center>WaveGlow</td>
+            <td align=center>FastWG</td>
+            <td align=center>FastWG G4</td>
+            <td align=center>FastWG G8</td>
+            <td align=center>FastWG SLC</td>
+            <td align=center>FastWG SLC G8</td>
+        </tr>
+
+        <tr>
+            <td align=center><audio src="./assets/records/LJ005-0169.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/baseline_conv1d/LJ005-0169.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d/LJ005-0169.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_g4/LJ005-0169.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_g8/LJ005-0169.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_slc/LJ005-0169.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_slc_g8/LJ005-0169.wav" controls=""></audio></td>
+        </tr>
+
+        <tr>
+            <td align=center> </td>
+            <td align=center> </td>
+            <td align=center>FastWG*</td>
+            <td align=center> </td>
+            <td align=center>FastWG G8*</td>
+            <td align=center>FastWG SLC*</td>
+            <td align=center>FastWG SLC G8*</td>
+        </tr>
+        <tr>
+            <td align=center></td>
+            <td align=center></td>
+            <td align=center><audio src="./assets/baseline_conv1d_aux_loss/LJ005-0169.wav" controls=""></audio></td>
+            <td align=center></td>
+            <td align=center><audio src="./assets/baseline_conv1d_g8_aux_loss/LJ005-0169.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/baseline_conv1d_slc_aux_loss/LJ005-0169.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/baseline_conv1d_slc_g8_aux_loss/LJ005-0169.wav" controls=""></audio></td>
+        </tr>
+    </table>    
+    </blockquote>
+
+</body>
 </html>
