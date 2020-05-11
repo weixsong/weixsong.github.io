@@ -2,9 +2,17 @@
 <!DOCTYPE html>
 <html>
 
+<head>
+<style>
+    audio{
+        width:250px;
+    }
+    </style>
+</head>
+
 <article>
   <header>
-	<h1>Fast WaveGlow: A Flow-based Neural Vocoder with Enhanced Speed</h1>
+    <h1>Fast WaveGlow: A Flow-based Neural Vocoder with Enhanced Speed</h1>
   </header>
 </article>
 
@@ -31,232 +39,238 @@ without any obvious reduction in the quality of the synthesized speech.
 </head>
 
 <body>
-<h2>Style control</h2></a>
-<h3>1. Interpolation</h3></a>
 
-    1." He had many years ago received such a description. "
+<p>
+<i>FastWG*</i> means the model is trained with auxiliary training criteria. </br>
+<i>SLC</i> means the local condition is between layers in one flow. </br>
+<i>FastWG G8</i> means group convolution with 8 group is used both for audio and local condition features. </br>
+</p>
+
+<h2>Encode mel-spectrum by BLSTM</h2></a>
+
+    1. "The poorer prisoners were not in abject want, as in other prisons,"
     <blockquote>
     <table>
-    <tr>
-    <td align=center width=120> </td><td align=center width=300>reference audio</td><td align=center width=300>generated audio</td> 
-    </tr>
-    <tr>
-	<tr><td>reference A</td><td><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_control/interpolate/b3_2300103_0_style1.wav" controls=""></audio></td><td><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_control/interpolate/0_wavenet.wav" controls=""></audio></td></tr>
-	
-	<tr><td>interpolated <b>z</b></td><td> </td><td><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_control/interpolate/2_wavenet.wav" controls=""></audio></td></tr>
-	
-	<tr><td>interpolated <b>z</b></td><td> </td><td><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_control/interpolate/4_wavenet.wav" controls=""></audio></td></tr>
-	
-	<tr><td>reference B</td><td><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_control/interpolate/b1_3800040_0_style1.wav" controls=""></audio></td><td><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_control/interpolate/7_wavenet.wav" controls=""></audio></td></tr>
-	
-    </tr>
-    </table>	
+        <tr>
+            <td align=center>Record</td>
+            <td align=center>WaveGlow</td>
+            <td align=center>FastWG</td>
+            <td align=center>FastWG G4</td>
+            <td align=center>FastWG G8</td>
+            <td align=center>FastWG SLC</td>
+            <td align=center>FastWG SLC G8</td>
+        </tr>
+
+        <tr>
+            <td align=center><audio src="./assets/records/LJ002-0261.wav" controls="" width="100px"></audio></td>
+            <td align=center><audio src="./assets/baseline_blstm/LJ002-0261.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm/LJ002-0261.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_g4/LJ002-0261.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_g8/LJ002-0261.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_slc/LJ002-0261.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_slc_g8/LJ002-0261.wav" controls=""></audio></td>
+        </tr>
+
+        <tr>
+            <td align=center> </td>
+            <td align=center> </td>
+            <td align=center>FastWG*</td>
+            <td align=center> </td>
+            <td align=center>FastWG G8*</td>
+            <td align=center>FastWG SLC*</td>
+            <td align=center>FastWG SLC G8*</td>
+        </tr>
+        <tr>
+            <td align=center></td>
+            <td align=center></td>
+            <td align=center><audio src="./assets/fastwg_blstm_aux_loss/LJ002-0261.wav" controls=""></audio></td>
+            <td align=center></td>
+            <td align=center><audio src="./assets/fastwg_blstm_g8_aux_loss/LJ002-0261.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_slc_aux_loss/LJ002-0261.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_slc_g8_aux_loss/LJ002-0261.wav" controls=""></audio></td>
+        </tr>
+    </table>    
     </blockquote>
 
-<h3>2. Disentangled factors</h3></a>
-
-	1." I suppose I may as well stay the night , "
-	<blockquote>
+    2. "At another time there were fifty, one of whom had been under sentence a couple of years."
+    <blockquote>
     <table>
-    <tr>
-	<tr><td>pitch height</td><td><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_control/disentangle/pitch1_wavenet.wav" controls=""></audio></td><td><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_control/disentangle/pitch2_wavenet.wav" controls=""></audio></td><td><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_control/disentangle/pitch3_wavenet.wav" controls=""></audio></td></tr>
+        <tr>
+            <td align=center>Record</td>
+            <td align=center>WaveGlow</td>
+            <td align=center>FastWG</td>
+            <td align=center>FastWG G4</td>
+            <td align=center>FastWG G8</td>
+            <td align=center>FastWG SLC</td>
+            <td align=center>FastWG SLC G8</td>
+        </tr>
 
-	<tr><td>local pitch variation</td><td><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_control/disentangle/flat1_wavenet.wav" controls=""></audio></td><td><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_control/disentangle/flat2_wavenet.wav" controls=""></audio></td><td><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_control/disentangle/flat3_wavenet.wav" controls=""></audio></td></tr>	
-    </tr>
-    </table>	
+        <tr>
+            <td align=center><audio src="./assets/records/LJ003-0194.wav" controls="" width="100px"></audio></td>
+            <td align=center><audio src="./assets/baseline_blstm/LJ003-0194.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm/LJ003-0194.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_g4/LJ003-0194.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_g8/LJ003-0194.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_slc/LJ003-0194.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_slc_g8/LJ003-0194.wav" controls=""></audio></td>
+        </tr>
+
+        <tr>
+            <td align=center> </td>
+            <td align=center> </td>
+            <td align=center>FastWG*</td>
+            <td align=center> </td>
+            <td align=center>FastWG G8*</td>
+            <td align=center>FastWG SLC*</td>
+            <td align=center>FastWG SLC G8*</td>
+        </tr>
+        <tr>
+            <td align=center></td>
+            <td align=center></td>
+            <td align=center><audio src="./assets/fastwg_blstm_aux_loss/LJ003-0194.wav" controls=""></audio></td>
+            <td align=center></td>
+            <td align=center><audio src="./assets/fastwg_blstm_g8_aux_loss/LJ003-0194.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_slc_aux_loss/LJ003-0194.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_slc_g8_aux_loss/LJ003-0194.wav" controls=""></audio></td>
+        </tr>
+    </table>    
     </blockquote>
 
+    3. "No prison dress was allowed; no reception-room was provided, no soap, towels, or baths."
+    <blockquote>
+    <table>
+        <tr>
+            <td align=center>Record</td>
+            <td align=center>WaveGlow</td>
+            <td align=center>FastWG</td>
+            <td align=center>FastWG G4</td>
+            <td align=center>FastWG G8</td>
+            <td align=center>FastWG SLC</td>
+            <td align=center>FastWG SLC G8</td>
+        </tr>
 
-<h3>3. Combination</h3></a>
+        <tr>
+            <td align=center><audio src="./assets/records/LJ004-0177.wav" controls="" width="100px"></audio></td>
+            <td align=center><audio src="./assets/baseline_blstm/LJ004-0177.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm/LJ004-0177.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_g4/LJ004-0177.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_g8/LJ004-0177.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_slc/LJ004-0177.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_slc_g8/LJ004-0177.wav" controls=""></audio></td>
+        </tr>
 
-	1." I suppose I may as well stay the night , "
-    <blockquote>
-    <table>
-    <tr>
-    <td align=center width=120><b>z</b>=A</td><td align=center width=300><b>z</b>=B</td><td align=center width=300><b>z</b>=A+B</td> 
-    </tr>
-    <tr>
-	<tr><td><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_control/combine/a_wavenet.wav" controls=""></audio></td><td><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_control/combine/b_wavenet.wav" controls=""></audio></td><td><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_control/combine/com_wavenet.wav" controls=""></audio></td></tr>
-	
-    </tr>
-    </table>	
-    </blockquote>  
-  
-<h2>Style transfer</h2></a>
-<h3>1. Parallel transfer</h3></a>
-   <p class="sample">
-    1." Didn't you know this was the twenty-eighth of August ? "
-    <blockquote>
-    <table>
-    <tr>
-    <td align=center width=300>reference audio</td><td align=center width=300>GST baseline model</td><td align=center width=300>proposed model</td>    
-    </tr>
-    <tr>
-    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/parallel/ref/03.wav" controls=""></audio></td>
-    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/parallel/baseline/03.wav" controls=""></audio></td>
-	<td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/parallel/vae/03.wav" controls=""></audio></td>
-    </tr>
-    </table>
-    </blockquote>
-	2. She was at a loss for an answer .
-    <blockquote>
-    <table>
-    <tr>
-    <td align=center width=300>reference audio</td><td align=center width=300>GST baseline model</td><td align=center width=300>proposed model</td> 
-    </tr>
-    <tr>
-    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/parallel/ref/61.wav" controls=""></audio></td>
-    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/parallel/baseline/61.wav" controls=""></audio></td>
-	<td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/parallel/vae/61.wav" controls=""></audio></td>
-    </tr>
-    </table>	
-    </blockquote>
-	3." I s'pose it's because I am Ojo the Unlucky that everyone who tries to help me gets into trouble . "
-    <blockquote>
-    <table>
-    <tr>
-    <td align=center width=300>reference audio</td><td align=center width=300>GST baseline model</td><td align=center width=300>proposed model</td> 
-    </tr>
-    <tr>
-    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/parallel/ref/36.wav" controls=""></audio></td>
-    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/parallel/baseline/36.wav" controls=""></audio></td>
-	<td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/parallel/vae/36.wav" controls=""></audio></td>
-    </tr>
-    </table>	
-    </blockquote>
-	4." When thou hast shown me a little love , thou mockest me ! "
-    <blockquote>
-    <table>
-    <tr>
-    <td align=center width=300>reference audio</td><td align=center width=300>GST baseline model</td><td align=center width=300>proposed model</td> 
-    </tr>
-    <tr>
-    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/parallel/ref/56.wav" controls=""></audio></td>
-    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/parallel/baseline/56.wav" controls=""></audio></td>
-	<td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/parallel/vae/56.wav" controls=""></audio></td>
-    </tr>
-    </table>	
-    </blockquote>	
-	5. said the Queen of the Corn-market , in an indifferently grateful tone .
-    <blockquote>
-    <table>
-    <tr>
-    <td align=center width=300>reference audio</td><td align=center width=300>GST baseline model</td><td align=center width=300>proposed model</td> 
-    </tr>
-    <tr>
-    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/parallel/ref/62.wav" controls=""></audio></td>
-    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/parallel/baseline/62.wav" controls=""></audio></td>
-	<td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/parallel/vae/62.wav" controls=""></audio></td>
-    </tr>
-    </table>	
-    </blockquote>	
-	
-	
-  </p>   
-<h3>1. Non-parallel transfer</h3></a>
-   <p class="sample">
-   	<div>1. <i>reference text</i> : " I love you . Good-by - because I love you . "</div>
-   	<div > &ensp; <i>target text</i> : " She could not compose herself - Mr. Woodhouse would be alarmed - she had better go ; "</div>	
-    <blockquote>
-    <table>
-    <tr>
-    <td align=center width=300>reference audio</td><td align=center width=300>GST baseline model</td><td align=center width=300>proposed model</td> 
-    </tr>
-    <tr>
-    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/non-parallel/ref/19.wav" controls=""></audio></td>
-    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/non-parallel/baseline/19.wav" controls=""></audio></td>
-	<td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/non-parallel/vae/19.wav" controls=""></audio></td>
-    </tr>
-    </table>	
-    </blockquote>   
-
-	<div>2. <i>reference text</i> : " Oh , what lovely trees ! "</div>
-   	<div > &ensp; <i>target text</i> : said the Queen of the Corn-market , in an indifferently grateful tone .</div>	
-	
-    <blockquote>
-    <table>
-    <tr>
-    <td align=center width=300>reference audio</td><td align=center width=300>GST baseline model</td><td align=center width=300>proposed model</td> 
-    </tr>
-    <tr>
-    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/non-parallel/ref/27.wav" controls=""></audio></td>
-    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/non-parallel/baseline/27.wav" controls=""></audio></td>
-	<td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/non-parallel/vae/27.wav" controls=""></audio></td>
-    </tr>
-    </table>	
-    </blockquote>	
-		
-	
-	<div>3. <i>reference text</i> : " Find some one who is real wicked , and stay with him till he repents . In that way you can do some good in the world . "</div>
-   	<div > &ensp; <i>target text</i> : He called again : the valleys and farthest hills resounded as when the sailors invoked the lost Hylas on the Mysian shore ; but no sheep .</div>			   
-		
-    <blockquote>
-    <table>
-    <tr>
-    <td align=center width=300>reference audio</td><td align=center width=300>GST baseline model</td><td align=center width=300>proposed model</td> 
-    </tr>
-    <tr>
-    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/non-parallel/ref/25.wav" controls=""></audio></td>
-    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/non-parallel/baseline/25.wav" controls=""></audio></td>
-	<td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/non-parallel/vae/25.wav" controls=""></audio></td>
-    </tr>
-    </table>	
-    </blockquote>	
-
-	<div>4. <i>reference text</i> : " Whenever you say the word I'm ready to thrash any amount of reason into him that he's able to hold . "</div>
-   	<div > &ensp; <i>target text</i> : Oh , certainly not ; Lucy would stop with her cousin . Oh , no !</div>			   
-		
-    <blockquote>
-    <table>
-    <tr>
-    <td align=center width=300>reference audio</td><td align=center width=300>GST baseline model</td><td align=center width=300>proposed model</td> 
-    </tr>
-    <tr>
-    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/non-parallel/ref/03.wav" controls=""></audio></td>
-    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/non-parallel/baseline/03.wav" controls=""></audio></td>
-	<td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/non-parallel/vae/03.wav" controls=""></audio></td>
-    </tr>
-    </table>	
-    </blockquote>		
-
-
-
-
-	<div>5. <i>reference text</i> : " is the only place in Oz where a yellow butterfly can be found . "</div>
-   	<div > &ensp; <i>target text</i> : His shoulders were broad and strong , his hands were very strong .</div>			   
-		
-    <blockquote>
-    <table>
-    <tr>
-    <td align=center width=300>reference audio</td><td align=center width=300>GST baseline model</td><td align=center width=300>proposed model</td> 
-    </tr>
-    <tr>
-    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/non-parallel/ref/40.wav" controls=""></audio></td>
-    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/non-parallel/baseline/40.wav" controls=""></audio></td>
-	<td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/non-parallel/vae/40.wav" controls=""></audio></td>
-    </tr>
-    </table>	
+        <tr>
+            <td align=center> </td>
+            <td align=center> </td>
+            <td align=center>FastWG*</td>
+            <td align=center> </td>
+            <td align=center>FastWG G8*</td>
+            <td align=center>FastWG SLC*</td>
+            <td align=center>FastWG SLC G8*</td>
+        </tr>
+        <tr>
+            <td align=center></td>
+            <td align=center></td>
+            <td align=center><audio src="./assets/fastwg_blstm_aux_loss/LJ003-0194.wav" controls=""></audio></td>
+            <td align=center></td>
+            <td align=center><audio src="./assets/fastwg_blstm_g8_aux_loss/LJ003-0194.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_slc_aux_loss/LJ003-0194.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_slc_g8_aux_loss/LJ003-0194.wav" controls=""></audio></td>
+        </tr>
+    </table>    
     </blockquote>
 
-	<div>6. <i>reference text</i> : " Thy mother is yonder woman with the scarlet letter , "</div>
-   	<div > &ensp; <i>target text</i> : Now it was finished - that is to say the design ; she must stitch it together .</div>	
- 
+    4. "Painters, plasterers, and carpenters were allowed to follow their handicrafts, with the reward of sixpence per diem and a double allowance of food."
     <blockquote>
     <table>
-    <tr>
-    <td align=center width=300>reference audio</td><td align=center width=300>GST baseline model</td><td align=center width=300>proposed model</td> 
-    </tr>
-    <tr>
-    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/non-parallel/ref/59.wav" controls=""></audio></td>
-    <td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/non-parallel/baseline/59.wav" controls=""></audio></td>
-	<td rowspan=2><audio src="http://home.ustc.edu.cn/~zyj008/ICASSP2019/audio/style_transfer/non-parallel/vae/59.wav" controls=""></audio></td>
-    </tr>
-    </table>	
-    </blockquote>
-	
+        <tr>
+            <td align=center>Record</td>
+            <td align=center>WaveGlow</td>
+            <td align=center>FastWG</td>
+            <td align=center>FastWG G4</td>
+            <td align=center>FastWG G8</td>
+            <td align=center>FastWG SLC</td>
+            <td align=center>FastWG SLC G8</td>
+        </tr>
 
-	
-  </p>    
+        <tr>
+            <td align=center><audio src="./assets/records/LJ004-0245.wav" controls="" width="100px"></audio></td>
+            <td align=center><audio src="./assets/baseline_blstm/LJ004-0245.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm/LJ004-0245.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_g4/LJ004-0245.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_g8/LJ004-0245.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_slc/LJ004-0245.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_slc_g8/LJ004-0245.wav" controls=""></audio></td>
+        </tr>
+
+        <tr>
+            <td align=center> </td>
+            <td align=center> </td>
+            <td align=center>FastWG*</td>
+            <td align=center> </td>
+            <td align=center>FastWG G8*</td>
+            <td align=center>FastWG SLC*</td>
+            <td align=center>FastWG SLC G8*</td>
+        </tr>
+        <tr>
+            <td align=center></td>
+            <td align=center></td>
+            <td align=center><audio src="./assets/fastwg_blstm_aux_loss/LJ004-0245.wav" controls=""></audio></td>
+            <td align=center></td>
+            <td align=center><audio src="./assets/fastwg_blstm_g8_aux_loss/LJ004-0245.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_slc_aux_loss/LJ004-0245.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_slc_g8_aux_loss/LJ004-0245.wav" controls=""></audio></td>
+        </tr>
+    </table>    
+    </blockquote>
+
+    5. "but I indulge a hope that many of them will contract with the counties,"
+    <blockquote>
+    <table>
+        <tr>
+            <td align=center>Record</td>
+            <td align=center>WaveGlow</td>
+            <td align=center>FastWG</td>
+            <td align=center>FastWG G4</td>
+            <td align=center>FastWG G8</td>
+            <td align=center>FastWG SLC</td>
+            <td align=center>FastWG SLC G8</td>
+        </tr>
+
+        <tr>
+            <td align=center><audio src="./assets/records/LJ005-0169.wav" controls="" width="100px"></audio></td>
+            <td align=center><audio src="./assets/baseline_blstm/LJ005-0169.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm/LJ005-0169.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_g4/LJ005-0169.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_g8/LJ005-0169.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_slc/LJ005-0169.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_slc_g8/LJ005-0169.wav" controls=""></audio></td>
+        </tr>
+
+        <tr>
+            <td align=center> </td>
+            <td align=center> </td>
+            <td align=center>FastWG*</td>
+            <td align=center> </td>
+            <td align=center>FastWG G8*</td>
+            <td align=center>FastWG SLC*</td>
+            <td align=center>FastWG SLC G8*</td>
+        </tr>
+        <tr>
+            <td align=center></td>
+            <td align=center></td>
+            <td align=center><audio src="./assets/fastwg_blstm_aux_loss/LJ005-0169.wav" controls=""></audio></td>
+            <td align=center></td>
+            <td align=center><audio src="./assets/fastwg_blstm_g8_aux_loss/LJ005-0169.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_slc_aux_loss/LJ005-0169.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_slc_g8_aux_loss/LJ005-0169.wav" controls=""></audio></td>
+        </tr>
+    </table>    
+    </blockquote>
+
+<h2>Encode mel-spectrum by Conv1d</h2></a>
+    
+
   
  </body>
 </html>
