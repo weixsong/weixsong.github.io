@@ -23,8 +23,7 @@ In this paper, we propose Fast WaveGlow, which is a flow-based generative model 
 To enhance the speed without sacrificing the quality of the synthesized speech, 
 Fast WaveGlow improves WaveGlow in the following aspects. 
 First, the WaveNet-style transformation network in WaveGlow is replaced with an FFTNet-style dilated convolution network. 
-Next, to reduce the computation cost, group convolution is applied to both audio and local condition features, and a shared local condition is integrated into each flow. At last, an auxiliary training task is added on top of the middle layers of the model, which can prevent the gradient vanishing problem. 
-As a result, Fast WaveGlow can reduce the number of floating-point operations required to generate one-second audio and the number of model parameters both by more than 10 times. Experimental results show that Fast WaveGlow can reduce real-world inference time cost by more than twice, 
+Next, to reduce the computation cost, group convolution is applied to both audio and local condition features, and a shared local condition is integrated into each flow. As a result, Fast WaveGlow can reduce the number of floating-point operations required to generate one-second audio and the number of model parameters both by more than 10 times. Experimental results show that Fast WaveGlow can reduce real-world inference time cost by more than twice, 
 without any obvious reduction in the quality of the synthesized speech.
 </div>
 
@@ -71,7 +70,7 @@ without any obvious reduction in the quality of the synthesized speech.
             <td align=center><audio src="./assets/fastwg_blstm_slc_g8/LJ002-0261.wav" controls=""></audio></td>
         </tr>
 
-        <tr>
+<!--         <tr>
             <td align=center> </td>
             <td align=center> </td>
             <td align=center>FastWG*</td>
@@ -88,7 +87,7 @@ without any obvious reduction in the quality of the synthesized speech.
             <td align=center><audio src="./assets/fastwg_blstm_g8_aux_loss/LJ002-0261.wav" controls=""></audio></td>
             <td align=center><audio src="./assets/fastwg_blstm_slc_aux_loss/LJ002-0261.wav" controls=""></audio></td>
             <td align=center><audio src="./assets/fastwg_blstm_slc_g8_aux_loss/LJ002-0261.wav" controls=""></audio></td>
-        </tr>
+        </tr> -->
     </table>    
     </blockquote>
 
@@ -115,7 +114,7 @@ without any obvious reduction in the quality of the synthesized speech.
             <td align=center><audio src="./assets/fastwg_blstm_slc_g8/LJ003-0194.wav" controls=""></audio></td>
         </tr>
 
-        <tr>
+<!--         <tr>
             <td align=center> </td>
             <td align=center> </td>
             <td align=center>FastWG*</td>
@@ -132,7 +131,7 @@ without any obvious reduction in the quality of the synthesized speech.
             <td align=center><audio src="./assets/fastwg_blstm_g8_aux_loss/LJ003-0194.wav" controls=""></audio></td>
             <td align=center><audio src="./assets/fastwg_blstm_slc_aux_loss/LJ003-0194.wav" controls=""></audio></td>
             <td align=center><audio src="./assets/fastwg_blstm_slc_g8_aux_loss/LJ003-0194.wav" controls=""></audio></td>
-        </tr>
+        </tr> -->
     </table>    
     </blockquote>
 
@@ -159,7 +158,7 @@ without any obvious reduction in the quality of the synthesized speech.
             <td align=center><audio src="./assets/fastwg_blstm_slc_g8/LJ004-0177.wav" controls=""></audio></td>
         </tr>
 
-        <tr>
+<!--         <tr>
             <td align=center> </td>
             <td align=center> </td>
             <td align=center>FastWG*</td>
@@ -176,7 +175,7 @@ without any obvious reduction in the quality of the synthesized speech.
             <td align=center><audio src="./assets/fastwg_blstm_g8_aux_loss/LJ003-0194.wav" controls=""></audio></td>
             <td align=center><audio src="./assets/fastwg_blstm_slc_aux_loss/LJ003-0194.wav" controls=""></audio></td>
             <td align=center><audio src="./assets/fastwg_blstm_slc_g8_aux_loss/LJ003-0194.wav" controls=""></audio></td>
-        </tr>
+        </tr> -->
     </table>    
     </blockquote>
 
@@ -203,7 +202,7 @@ without any obvious reduction in the quality of the synthesized speech.
             <td align=center><audio src="./assets/fastwg_blstm_slc_g8/LJ004-0245.wav" controls=""></audio></td>
         </tr>
 
-        <tr>
+<!--         <tr>
             <td align=center> </td>
             <td align=center> </td>
             <td align=center>FastWG*</td>
@@ -220,7 +219,7 @@ without any obvious reduction in the quality of the synthesized speech.
             <td align=center><audio src="./assets/fastwg_blstm_g8_aux_loss/LJ004-0245.wav" controls=""></audio></td>
             <td align=center><audio src="./assets/fastwg_blstm_slc_aux_loss/LJ004-0245.wav" controls=""></audio></td>
             <td align=center><audio src="./assets/fastwg_blstm_slc_g8_aux_loss/LJ004-0245.wav" controls=""></audio></td>
-        </tr>
+        </tr> -->
     </table>    
     </blockquote>
 
@@ -247,7 +246,7 @@ without any obvious reduction in the quality of the synthesized speech.
             <td align=center><audio src="./assets/fastwg_blstm_slc_g8/LJ005-0169.wav" controls=""></audio></td>
         </tr>
 
-        <tr>
+<!--         <tr>
             <td align=center> </td>
             <td align=center> </td>
             <td align=center>FastWG*</td>
@@ -264,7 +263,7 @@ without any obvious reduction in the quality of the synthesized speech.
             <td align=center><audio src="./assets/fastwg_blstm_g8_aux_loss/LJ005-0169.wav" controls=""></audio></td>
             <td align=center><audio src="./assets/fastwg_blstm_slc_aux_loss/LJ005-0169.wav" controls=""></audio></td>
             <td align=center><audio src="./assets/fastwg_blstm_slc_g8_aux_loss/LJ005-0169.wav" controls=""></audio></td>
-        </tr>
+        </tr> -->
     </table>    
     </blockquote>
 
@@ -293,7 +292,7 @@ without any obvious reduction in the quality of the synthesized speech.
             <td align=center><audio src="./assets/fastwg_conv1d_slc_g8/LJ002-0261.wav" controls=""></audio></td>
         </tr>
 
-        <tr>
+<!--         <tr>
             <td align=center> </td>
             <td align=center> </td>
             <td align=center>FastWG*</td>
@@ -310,7 +309,7 @@ without any obvious reduction in the quality of the synthesized speech.
             <td align=center><audio src="./assets/fastwg_conv1d_g8_aux_loss/LJ002-0261.wav" controls=""></audio></td>
             <td align=center><audio src="./assets/fastwg_conv1d_slc_aux_loss/LJ002-0261.wav" controls=""></audio></td>
             <td align=center><audio src="./assets/fastwg_conv1d_slc_g8_aux_loss/LJ002-0261.wav" controls=""></audio></td>
-        </tr>
+        </tr> -->
     </table>    
     </blockquote>
 
@@ -337,7 +336,7 @@ without any obvious reduction in the quality of the synthesized speech.
             <td align=center><audio src="./assets/fastwg_conv1d_slc_g8/LJ003-0194.wav" controls=""></audio></td>
         </tr>
 
-        <tr>
+<!--         <tr>
             <td align=center> </td>
             <td align=center> </td>
             <td align=center>FastWG*</td>
@@ -354,7 +353,7 @@ without any obvious reduction in the quality of the synthesized speech.
             <td align=center><audio src="./assets/fastwg_conv1d_g8_aux_loss/LJ003-0194.wav" controls=""></audio></td>
             <td align=center><audio src="./assets/fastwg_conv1d_slc_aux_loss/LJ003-0194.wav" controls=""></audio></td>
             <td align=center><audio src="./assets/fastwg_conv1d_slc_g8_aux_loss/LJ003-0194.wav" controls=""></audio></td>
-        </tr>
+        </tr> -->
     </table>    
     </blockquote>
 
@@ -381,7 +380,7 @@ without any obvious reduction in the quality of the synthesized speech.
             <td align=center><audio src="./assets/fastwg_conv1d_slc_g8/LJ004-0177.wav" controls=""></audio></td>
         </tr>
 
-        <tr>
+<!--         <tr>
             <td align=center> </td>
             <td align=center> </td>
             <td align=center>FastWG*</td>
@@ -398,7 +397,7 @@ without any obvious reduction in the quality of the synthesized speech.
             <td align=center><audio src="./assets/fastwg_conv1d_g8_aux_loss/LJ004-0177.wav" controls=""></audio></td>
             <td align=center><audio src="./assets/fastwg_conv1d_slc_aux_loss/LJ004-0177.wav" controls=""></audio></td>
             <td align=center><audio src="./assets/fastwg_conv1d_slc_g8_aux_loss/LJ004-0177.wav" controls=""></audio></td>
-        </tr>
+        </tr> -->
     </table>    
     </blockquote>
 
@@ -425,7 +424,7 @@ without any obvious reduction in the quality of the synthesized speech.
             <td align=center><audio src="./assets/fastwg_conv1d_slc_g8/LJ004-0245.wav" controls=""></audio></td>
         </tr>
 
-        <tr>
+<!--         <tr>
             <td align=center> </td>
             <td align=center> </td>
             <td align=center>FastWG*</td>
@@ -442,7 +441,7 @@ without any obvious reduction in the quality of the synthesized speech.
             <td align=center><audio src="./assets/fastwg_conv1d_g8_aux_loss/LJ004-0245.wav" controls=""></audio></td>
             <td align=center><audio src="./assets/fastwg_conv1d_slc_aux_loss/LJ004-0245.wav" controls=""></audio></td>
             <td align=center><audio src="./assets/fastwg_conv1d_slc_g8_aux_loss/LJ004-0245.wav" controls=""></audio></td>
-        </tr>
+        </tr> -->
     </table>    
     </blockquote>
 
@@ -469,7 +468,7 @@ without any obvious reduction in the quality of the synthesized speech.
             <td align=center><audio src="./assets/fastwg_conv1d_slc_g8/LJ005-0169.wav" controls=""></audio></td>
         </tr>
 
-        <tr>
+<!--         <tr>
             <td align=center> </td>
             <td align=center> </td>
             <td align=center>FastWG*</td>
@@ -486,7 +485,7 @@ without any obvious reduction in the quality of the synthesized speech.
             <td align=center><audio src="./assets/fastwg_conv1d_g8_aux_loss/LJ005-0169.wav" controls=""></audio></td>
             <td align=center><audio src="./assets/fastwg_conv1d_slc_aux_loss/LJ005-0169.wav" controls=""></audio></td>
             <td align=center><audio src="./assets/fastwg_conv1d_slc_g8_aux_loss/LJ005-0169.wav" controls=""></audio></td>
-        </tr>
+        </tr> -->
     </table>    
     </blockquote>
 
