@@ -1,0 +1,307 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+<style>
+    audio{
+        width:250px;
+    }
+    </style>
+</head>
+
+<article>
+  <header>
+    <h1>Efficient WaveGlow: An Improved WaveGlow Vocoder with Enhanced Speed</h1>
+  </header>
+</article>
+
+<p><b>Authors:</b> Wei Song, Guanghui Xu, Zhengchen Zhang, Chao Zhang, Xiaodong He, Bowen Zhou </p>
+
+<div><b>Abstract:</b> Neural vocoder, such as WaveGlow, has become an important component in recent high-quality text-to-speech (TTS) systems. In this paper, we propose Efficient WaveGlow (EWG), which is a flow-based generative model serving as an efficient neural vocoder. Similar to WaveGlow, Efficient WaveGlow has a normalizing flow backbone where each flow step consists of an affine coupling layer and an invertible 1×1 convolution. To reduce the model parameters and enhance the speed without sacrificing the quality of the synthesized speech, Efficient WaveGlow improves WaveGlow in the following aspects. First, the WaveNet-style transformation network in WaveGlow is replaced with an FFTNet-style dilated convolution network. Next, to reduce the computation cost, group convolution is applied to both audio and local condition features. At last, the local condition is shared among the transformation network layers in each coupling layer. As a result, Efficient WaveGlow can reduce the number of floating-point operations (FLOPs) required to generate one-second audio and the number of model parameters both by more than 12 times. Experimental results show that Efficient WaveGlow can reduce real-world inference time cost by more than twice, without any obvious reduction in the quality of the synthesized speech.
+</div>
+
+<p><b></b> </p>
+
+<p><b>Paper link:</b> </p>
+
+
+<head>
+<meta charset="UTF-8">
+<title>Wave Demo</title>
+</head>
+
+<body>
+
+<p>
+<i>EWG</i> means Efficient WaveGlow
+<i>SLC</i> means the local condition is between layers in one flow. </br>
+<i>EWG G8</i> means group convolution with 8 group is used both for audio and local condition features. </br>
+</p>
+
+<h2>Encode mel-spectrum by BLSTM</h2></a>
+
+    1. "The poorer prisoners were not in abject want, as in other prisons,"
+    <blockquote>
+    <table>
+        <tr>
+            <td align=center>Record</td>
+            <td align=center>WaveGlow</td>
+            <td align=center>EWG</td>
+            <td align=center>EWG G4</td>
+            <td align=center>EWG G8</td>
+            <td align=center>EWG SLC</td>
+            <td align=center>EWG SLC G8</td>
+        </tr>
+
+        <tr>
+            <td align=center><audio src="./assets/records/LJ002-0261.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/baseline_blstm/LJ002-0261.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm/LJ002-0261.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_g4/LJ002-0261.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_g8/LJ002-0261.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_slc/LJ002-0261.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_slc_g8/LJ002-0261.wav" controls=""></audio></td>
+        </tr>
+
+    </table>    
+    </blockquote>
+
+    2. "At another time there were fifty, one of whom had been under sentence a couple of years."
+    <blockquote>
+    <table>
+        <tr>
+            <td align=center>Record</td>
+            <td align=center>WaveGlow</td>
+            <td align=center>EWG</td>
+            <td align=center>EWG G4</td>
+            <td align=center>EWG G8</td>
+            <td align=center>EWG SLC</td>
+            <td align=center>EWG SLC G8</td>
+        </tr>
+
+        <tr>
+            <td align=center><audio src="./assets/records/LJ003-0194.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/baseline_blstm/LJ003-0194.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm/LJ003-0194.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_g4/LJ003-0194.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_g8/LJ003-0194.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_slc/LJ003-0194.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_slc_g8/LJ003-0194.wav" controls=""></audio></td>
+        </tr>
+
+    </table>    
+    </blockquote>
+
+    3. "No prison dress was allowed; no reception-room was provided, no soap, towels, or baths."
+    <blockquote>
+    <table>
+        <tr>
+            <td align=center>Record</td>
+            <td align=center>WaveGlow</td>
+            <td align=center>EWG</td>
+            <td align=center>EWG G4</td>
+            <td align=center>EWG G8</td>
+            <td align=center>EWG SLC</td>
+            <td align=center>EWG SLC G8</td>
+        </tr>
+
+        <tr>
+            <td align=center><audio src="./assets/records/LJ004-0177.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/baseline_blstm/LJ004-0177.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm/LJ004-0177.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_g4/LJ004-0177.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_g8/LJ004-0177.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_slc/LJ004-0177.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_slc_g8/LJ004-0177.wav" controls=""></audio></td>
+        </tr>
+
+    </table>    
+    </blockquote>
+
+    4. "Painters, plasterers, and carpenters were allowed to follow their handicrafts, with the reward of sixpence per diem and a double allowance of food."
+    <blockquote>
+    <table>
+        <tr>
+            <td align=center>Record</td>
+            <td align=center>WaveGlow</td>
+            <td align=center>EWG</td>
+            <td align=center>EWG G4</td>
+            <td align=center>EWG G8</td>
+            <td align=center>EWG SLC</td>
+            <td align=center>EWG SLC G8</td>
+        </tr>
+
+        <tr>
+            <td align=center><audio src="./assets/records/LJ004-0245.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/baseline_blstm/LJ004-0245.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm/LJ004-0245.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_g4/LJ004-0245.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_g8/LJ004-0245.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_slc/LJ004-0245.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_slc_g8/LJ004-0245.wav" controls=""></audio></td>
+        </tr>
+
+    </table>    
+    </blockquote>
+
+    5. "but I indulge a hope that many of them will contract with the counties,"
+    <blockquote>
+    <table>
+        <tr>
+            <td align=center>Record</td>
+            <td align=center>WaveGlow</td>
+            <td align=center>EWG</td>
+            <td align=center>EWG G4</td>
+            <td align=center>EWG G8</td>
+            <td align=center>EWG SLC</td>
+            <td align=center>EWG SLC G8</td>
+        </tr>
+
+        <tr>
+            <td align=center><audio src="./assets/records/LJ005-0169.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/baseline_blstm/LJ005-0169.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm/LJ005-0169.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_g4/LJ005-0169.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_g8/LJ005-0169.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_slc/LJ005-0169.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_blstm_slc_g8/LJ005-0169.wav" controls=""></audio></td>
+        </tr>
+
+    </table>    
+    </blockquote>
+
+<h2>Encode mel-spectrum by Conv1d</h2></a>
+
+    1. "The poorer prisoners were not in abject want, as in other prisons,"
+    <blockquote>
+    <table>
+        <tr>
+            <td align=center>Record</td>
+            <td align=center>WaveGlow</td>
+            <td align=center>EWG</td>
+            <td align=center>EWG G4</td>
+            <td align=center>EWG G8</td>
+            <td align=center>EWG SLC</td>
+            <td align=center>EWG SLC G8</td>
+        </tr>
+
+        <tr>
+            <td align=center><audio src="./assets/records/LJ002-0261.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/baseline_conv1d/LJ002-0261.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d/LJ002-0261.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_g4/LJ002-0261.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_g8/LJ002-0261.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_slc/LJ002-0261.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_slc_g8/LJ002-0261.wav" controls=""></audio></td>
+        </tr>
+
+    </table>    
+    </blockquote>
+
+    2. "At another time there were fifty, one of whom had been under sentence a couple of years."
+    <blockquote>
+    <table>
+        <tr>
+            <td align=center>Record</td>
+            <td align=center>WaveGlow</td>
+            <td align=center>EWG</td>
+            <td align=center>EWG G4</td>
+            <td align=center>EWG G8</td>
+            <td align=center>EWG SLC</td>
+            <td align=center>EWG SLC G8</td>
+        </tr>
+
+        <tr>
+            <td align=center><audio src="./assets/records/LJ003-0194.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/baseline_conv1d/LJ003-0194.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d/LJ003-0194.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_g4/LJ003-0194.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_g8/LJ003-0194.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_slc/LJ003-0194.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_slc_g8/LJ003-0194.wav" controls=""></audio></td>
+        </tr>
+
+    </table>    
+    </blockquote>
+
+    3. "No prison dress was allowed; no reception-room was provided, no soap, towels, or baths."
+    <blockquote>
+    <table>
+        <tr>
+            <td align=center>Record</td>
+            <td align=center>WaveGlow</td>
+            <td align=center>EWG</td>
+            <td align=center>EWG G4</td>
+            <td align=center>EWG G8</td>
+            <td align=center>EWG SLC</td>
+            <td align=center>EWG SLC G8</td>
+        </tr>
+
+        <tr>
+            <td align=center><audio src="./assets/records/LJ004-0177.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/baseline_conv1d/LJ004-0177.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d/LJ004-0177.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_g4/LJ004-0177.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_g8/LJ004-0177.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_slc/LJ004-0177.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_slc_g8/LJ004-0177.wav" controls=""></audio></td>
+        </tr>
+
+    </table>    
+    </blockquote>
+
+    4. "Painters, plasterers, and carpenters were allowed to follow their handicrafts, with the reward of sixpence per diem and a double allowance of food."
+    <blockquote>
+    <table>
+        <tr>
+            <td align=center>Record</td>
+            <td align=center>WaveGlow</td>
+            <td align=center>EWG</td>
+            <td align=center>EWG G4</td>
+            <td align=center>EWG G8</td>
+            <td align=center>EWG SLC</td>
+            <td align=center>EWG SLC G8</td>
+        </tr>
+
+        <tr>
+            <td align=center><audio src="./assets/records/LJ004-0245.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/baseline_conv1d/LJ004-0245.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d/LJ004-0245.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_g4/LJ004-0245.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_g8/LJ004-0245.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_slc/LJ004-0245.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_slc_g8/LJ004-0245.wav" controls=""></audio></td>
+        </tr>
+
+    </table>    
+    </blockquote>
+
+    5. "but I indulge a hope that many of them will contract with the counties,"
+    <blockquote>
+    <table>
+        <tr>
+            <td align=center>Record</td>
+            <td align=center>WaveGlow</td>
+            <td align=center>EWG</td>
+            <td align=center>EWG G4</td>
+            <td align=center>EWG G8</td>
+            <td align=center>EWG SLC</td>
+            <td align=center>EWG SLC G8</td>
+        </tr>
+
+        <tr>
+            <td align=center><audio src="./assets/records/LJ005-0169.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/baseline_conv1d/LJ005-0169.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d/LJ005-0169.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_g4/LJ005-0169.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_g8/LJ005-0169.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_slc/LJ005-0169.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/fastwg_conv1d_slc_g8/LJ005-0169.wav" controls=""></audio></td>
+        </tr>
+
+    </table>    
+    </blockquote>
+
+</body>
+</html>
