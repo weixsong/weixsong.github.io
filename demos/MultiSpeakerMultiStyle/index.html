@@ -12,13 +12,13 @@
 
 <article>
   <header>
-    <h1>Efficient WaveGlow: An Improved WaveGlow Vocoder with Enhanced Speed</h1>
+    <h1>Multi-Speaker Multi-Style Speech Synthesis with Timbre and Style Disentanglement</h1>
   </header>
 </article>
 
-<p><b>Authors:</b> Wei Song, Guanghui Xu, Zhengchen Zhang, Chao Zhang, Xiaodong He, Bowen Zhou </p>
+<p><b>Authors:</b> Wei Song, Yanghao Yue, Yajie Zhang, Zhengchen Zhang, Youzheng Wu, Xiaodong He </p>
 
-<div><b>Abstract:</b> Neural vocoder, such as WaveGlow, has become an important component in recent high-quality text-to-speech (TTS) systems. In this paper, we propose Efficient WaveGlow (EWG), which is a flow-based generative model serving as an efficient neural vocoder. Similar to WaveGlow, Efficient WaveGlow has a normalizing flow backbone where each flow step consists of an affine coupling layer and an invertible 1×1 convolution. To reduce the model parameters and enhance the speed without sacrificing the quality of the synthesized speech, Efficient WaveGlow improves WaveGlow in the following aspects. First, the WaveNet-style transformation network in WaveGlow is replaced with an FFTNet-style dilated convolution network. Next, to reduce the computation cost, group convolution is applied to both audio and local condition features. At last, the local condition is shared among the transformation network layers in each coupling layer. As a result, Efficient WaveGlow can reduce the number of floating-point operations (FLOPs) required to generate one-second audio and the number of model parameters both by more than 12 times. Experimental results show that Efficient WaveGlow can reduce real-world inference time cost by more than twice, without any obvious reduction in the quality of the synthesized speech.
+<div><b>Abstract:</b> Disentanglement of a speaker's timbre and style is very important for style transfer in multi-speaker multi-style text-to-speech (TTS) scenarios.With the disentanglement of timbres and styles, TTS systems could synthesize expressive speech for a given speaker with any style which has been seen in the training corpus. However, there are still some shortcomings with the current research on timbre and style disentanglement. The current method either requires single-speaker multi-style recordings, which are difficult and expensive to collect, or uses a complex network and complicated training method, which is difficult to reproduce and control the style transfer behavior. To improve the disentanglement effectiveness of timbres and styles, and to remove the reliance on single-speaker multi-style corpus, a simple but effective timbre and style disentanglement method is proposed in this paper. The FastSpeech2 network is employed as the backbone network, with explicit duration, pitch, and energy trajectory to represent the style. Each speaker's data is considered as a separate and isolated style, then a speaker embedding and a style embedding are added to the FastSpeech2 network to learn disentangled representations. Utterance level pitch and energy normalization are utilized to improve the decoupling effect. Experimental results demonstrate that the proposed model could synthesize speech with any style seen during training with high style similarity while maintaining very high speaker similarity.
 </div>
 
 <p><b></b> </p>
@@ -33,275 +33,325 @@
 
 <body>
 
-<p>
-<i>EWG</i> means Efficient WaveGlow
-<i>SLC</i> means the local condition is between layers in one flow. </br>
-<i>EWG G8</i> means group convolution with 8 group is used both for audio and local condition features. </br>
-</p>
+<!-- <p> -->
+<!-- <i>EWG</i> means Efficient WaveGlow -->
+<!-- <i>SLC</i> means the local condition is between layers in one flow. </br> -->
+<!-- <i>EWG G8</i> means group convolution with 8 group is used both for audio and local condition features. </br> -->
+<!-- </p> -->
 
-<h2>Encode mel-spectrum by BLSTM</h2></a>
+<h2>Speaker with different styles (speaker similarity)</h2></a>
 
-    1. "The poorer prisoners were not in abject want, as in other prisons,"
+    1. CSMSC
     <blockquote>
     <table>
         <tr>
             <td align=center>Record</td>
-            <td align=center>WaveGlow</td>
-            <td align=center>EWG</td>
-            <td align=center>EWG G4</td>
-            <td align=center>EWG G8</td>
-            <td align=center>EWG SLC</td>
-            <td align=center>EWG SLC G8</td>
+            <td align=center>Children-Story</td>
+            <td align=center>News-Broadcasting</td>
+            <td align=center>Story-Telling</td>
         </tr>
 
         <tr>
-            <td align=center><audio src="./assets/records/LJ002-0261.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/baseline_blstm/LJ002-0261.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_blstm/LJ002-0261.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_blstm_g4/LJ002-0261.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_blstm_g8/LJ002-0261.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_blstm_slc/LJ002-0261.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_blstm_slc_g8/LJ002-0261.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/speaker_mos/CSMSC/Reference/0001.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/speaker_mos/CSMSC/child/0003.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/speaker_mos/CSMSC/news-reporting/0001.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/speaker_mos/CSMSC/story-telling/0011.wav" controls=""></audio></td>
+        </tr>
+
+        <tr>
+            <td align=center><audio src="./assets/speaker_mos/CSMSC/Reference/0002.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/speaker_mos/CSMSC/child/0004.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/speaker_mos/CSMSC/news-reporting/0002.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/speaker_mos/CSMSC/story-telling/0015.wav" controls=""></audio></td>
+        </tr>
+
+        <tr>
+            <td align=center><audio src="./assets/speaker_mos/CSMSC/Reference/0003.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/speaker_mos/CSMSC/child/0006.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/speaker_mos/CSMSC/news-reporting/0003.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/speaker_mos/CSMSC/story-telling/0018.wav" controls=""></audio></td>
         </tr>
 
     </table>    
     </blockquote>
 
-    2. "At another time there were fifty, one of whom had been under sentence a couple of years."
+    2. Originbeat-S1
     <blockquote>
     <table>
         <tr>
             <td align=center>Record</td>
-            <td align=center>WaveGlow</td>
-            <td align=center>EWG</td>
-            <td align=center>EWG G4</td>
-            <td align=center>EWG G8</td>
-            <td align=center>EWG SLC</td>
-            <td align=center>EWG SLC G8</td>
+            <td align=center>Children-Story</td>
+            <td align=center>News-Broadcasting</td>
+            <td align=center>Story-Telling</td>
         </tr>
 
         <tr>
-            <td align=center><audio src="./assets/records/LJ003-0194.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/baseline_blstm/LJ003-0194.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_blstm/LJ003-0194.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_blstm_g4/LJ003-0194.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_blstm_g8/LJ003-0194.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_blstm_slc/LJ003-0194.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_blstm_slc_g8/LJ003-0194.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/speaker_mos/originbeats1/Reference/0001.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/speaker_mos/originbeats1/child/0004.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/speaker_mos/originbeats1/news-reporting/0005.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/speaker_mos/originbeats1/story-telling/0012.wav" controls=""></audio></td>
+        </tr>
+
+        <tr>
+            <td align=center><audio src="./assets/speaker_mos/originbeats1/Reference/0002.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/speaker_mos/originbeats1/child/0006.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/speaker_mos/originbeats1/news-reporting/0009.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/speaker_mos/originbeats1/story-telling/0015.wav" controls=""></audio></td>
+        </tr>
+        
+        <tr>
+            <td align=center><audio src="./assets/speaker_mos/originbeats1/Reference/0003.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/speaker_mos/originbeats1/child/0009.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/speaker_mos/originbeats1/news-reporting/0010.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/speaker_mos/originbeats1/story-telling/0019.wav" controls=""></audio></td>
         </tr>
 
     </table>    
     </blockquote>
 
-    3. "No prison dress was allowed; no reception-room was provided, no soap, towels, or baths."
+    3. Originbeat-S2
     <blockquote>
     <table>
         <tr>
             <td align=center>Record</td>
-            <td align=center>WaveGlow</td>
-            <td align=center>EWG</td>
-            <td align=center>EWG G4</td>
-            <td align=center>EWG G8</td>
-            <td align=center>EWG SLC</td>
-            <td align=center>EWG SLC G8</td>
+            <td align=center>Children-Story</td>
+            <td align=center>News-Broadcasting</td>
+            <td align=center>Story-Telling</td>
         </tr>
 
         <tr>
-            <td align=center><audio src="./assets/records/LJ004-0177.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/baseline_blstm/LJ004-0177.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_blstm/LJ004-0177.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_blstm_g4/LJ004-0177.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_blstm_g8/LJ004-0177.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_blstm_slc/LJ004-0177.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_blstm_slc_g8/LJ004-0177.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/speaker_mos/originbeats2/Reference/0001.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/speaker_mos/originbeats2/child/0002.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/speaker_mos/originbeats2/news-reporting/0001.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/speaker_mos/originbeats2/story-telling/0013.wav" controls=""></audio></td>
+        </tr>
+        
+        <tr>
+            <td align=center><audio src="./assets/speaker_mos/originbeats2/Reference/0002.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/speaker_mos/originbeats2/child/0003.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/speaker_mos/originbeats2/news-reporting/0004.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/speaker_mos/originbeats2/story-telling/0019.wav" controls=""></audio></td>
+        </tr>
+        
+        <tr>
+            <td align=center><audio src="./assets/speaker_mos/originbeats2/Reference/0003.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/speaker_mos/originbeats2/child/0004.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/speaker_mos/originbeats2/news-reporting/0010.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/speaker_mos/originbeats2/story-telling/0020.wav" controls=""></audio></td>
         </tr>
 
     </table>    
     </blockquote>
 
-    4. "Painters, plasterers, and carpenters were allowed to follow their handicrafts, with the reward of sixpence per diem and a double allowance of food."
+
+<h2>Target style for different speakers (style similarity)</h2></a>
+
+    1. Children-Story
     <blockquote>
     <table>
         <tr>
             <td align=center>Record</td>
-            <td align=center>WaveGlow</td>
-            <td align=center>EWG</td>
-            <td align=center>EWG G4</td>
-            <td align=center>EWG G8</td>
-            <td align=center>EWG SLC</td>
-            <td align=center>EWG SLC G8</td>
+            <td align=center>CSMSC</td>
+            <td align=center>Originbeat-S1</td>
+            <td align=center>Originbeat-S2</td>
         </tr>
 
         <tr>
-            <td align=center><audio src="./assets/records/LJ004-0245.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/baseline_blstm/LJ004-0245.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_blstm/LJ004-0245.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_blstm_g4/LJ004-0245.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_blstm_g8/LJ004-0245.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_blstm_slc/LJ004-0245.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_blstm_slc_g8/LJ004-0245.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/style_mos/child/Reference/0001.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/style_mos/child/biaobei/0002.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/style_mos/child/originbeats1/0002.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/style_mos/child/originbeats2/0001.wav" controls=""></audio></td>
+        </tr>
+        
+        <tr>
+            <td align=center><audio src="./assets/style_mos/child/Reference/0002.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/style_mos/child/biaobei/0005.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/style_mos/child/originbeats1/0005.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/style_mos/child/originbeats2/0005.wav" controls=""></audio></td>
+        </tr>
+        
+        <tr>
+            <td align=center><audio src="./assets/style_mos/child/Reference/0003.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/style_mos/child/biaobei/0010.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/style_mos/child/originbeats1/0010.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/style_mos/child/originbeats2/0010.wav" controls=""></audio></td>
         </tr>
 
     </table>    
     </blockquote>
 
-    5. "but I indulge a hope that many of them will contract with the counties,"
+    2. News-Broadcasting
     <blockquote>
     <table>
         <tr>
             <td align=center>Record</td>
-            <td align=center>WaveGlow</td>
-            <td align=center>EWG</td>
-            <td align=center>EWG G4</td>
-            <td align=center>EWG G8</td>
-            <td align=center>EWG SLC</td>
-            <td align=center>EWG SLC G8</td>
+            <td align=center>CSMSC</td>
+            <td align=center>Originbeat-S1</td>
+            <td align=center>Originbeat-S2</td>
         </tr>
 
         <tr>
-            <td align=center><audio src="./assets/records/LJ005-0169.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/baseline_blstm/LJ005-0169.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_blstm/LJ005-0169.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_blstm_g4/LJ005-0169.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_blstm_g8/LJ005-0169.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_blstm_slc/LJ005-0169.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_blstm_slc_g8/LJ005-0169.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/style_mos/news-reporting/Reference/0001.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/style_mos/news-reporting/biaobei/0008.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/style_mos/news-reporting/originbeats1/0001.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/style_mos/news-reporting/originbeats2/0003.wav" controls=""></audio></td>
+        </tr>
+        
+        <tr>
+            <td align=center><audio src="./assets/style_mos/news-reporting/Reference/0008.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/style_mos/news-reporting/biaobei/0009.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/style_mos/news-reporting/originbeats1/0002.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/style_mos/news-reporting/originbeats2/0005.wav" controls=""></audio></td>
+        </tr>
+        
+        <tr>
+            <td align=center><audio src="./assets/style_mos/news-reporting/Reference/0009.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/style_mos/news-reporting/biaobei/0010.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/style_mos/news-reporting/originbeats1/0003.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/style_mos/news-reporting/originbeats2/0006.wav" controls=""></audio></td>
         </tr>
 
     </table>    
     </blockquote>
 
-<h2>Encode mel-spectrum by Conv1d</h2></a>
-
-    1. "The poorer prisoners were not in abject want, as in other prisons,"
+    3. Story-Telling
     <blockquote>
     <table>
         <tr>
             <td align=center>Record</td>
-            <td align=center>WaveGlow</td>
-            <td align=center>EWG</td>
-            <td align=center>EWG G4</td>
-            <td align=center>EWG G8</td>
-            <td align=center>EWG SLC</td>
-            <td align=center>EWG SLC G8</td>
+            <td align=center>CSMSC</td>
+            <td align=center>Originbeat-S1</td>
+            <td align=center>Originbeat-S2</td>
         </tr>
 
         <tr>
-            <td align=center><audio src="./assets/records/LJ002-0261.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/baseline_conv1d/LJ002-0261.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_conv1d/LJ002-0261.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_conv1d_g4/LJ002-0261.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_conv1d_g8/LJ002-0261.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_conv1d_slc/LJ002-0261.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_conv1d_slc_g8/LJ002-0261.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/style_mos/story-telling/Reference/0001.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/style_mos/story-telling/biaobei/0001.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/style_mos/story-telling/originbeats1/0003.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/style_mos/story-telling/originbeats2/0001.wav" controls=""></audio></td>
+        </tr>
+        
+        <tr>
+            <td align=center><audio src="./assets/style_mos/story-telling/Reference/0002.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/style_mos/story-telling/biaobei/0003.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/style_mos/story-telling/originbeats1/0005.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/style_mos/story-telling/originbeats2/0002.wav" controls=""></audio></td>
+        </tr>
+        
+        <tr>
+            <td align=center><audio src="./assets/style_mos/story-telling/Reference/0012.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/style_mos/story-telling/biaobei/0005.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/style_mos/story-telling/originbeats1/0010.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/style_mos/story-telling/originbeats2/0010.wav" controls=""></audio></td>
         </tr>
 
     </table>    
     </blockquote>
 
-    2. "At another time there were fifty, one of whom had been under sentence a couple of years."
+    
+<h2>Ablation Study of UttNorm and SpkNorm</h2></a>
+    1. CSMSC
     <blockquote>
     <table>
         <tr>
-            <td align=center>Record</td>
-            <td align=center>WaveGlow</td>
-            <td align=center>EWG</td>
-            <td align=center>EWG G4</td>
-            <td align=center>EWG G8</td>
-            <td align=center>EWG SLC</td>
-            <td align=center>EWG SLC G8</td>
+            <td align=center>CSMSC Record (source)</td>
+            <td align=center>Noisy Podcast Record (target style)</td>
+            <td align=center>SpkNorm</td>
+            <td align=center>UttNorm (proposed)</td>
         </tr>
 
         <tr>
-            <td align=center><audio src="./assets/records/LJ003-0194.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/baseline_conv1d/LJ003-0194.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_conv1d/LJ003-0194.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_conv1d_g4/LJ003-0194.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_conv1d_g8/LJ003-0194.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_conv1d_slc/LJ003-0194.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_conv1d_slc_g8/LJ003-0194.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/ablation_study_spknorm_uttnorm/biaobei/Reference/0004.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/ablation_study_spknorm_uttnorm/zhibov2spk5_record/0001.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/ablation_study_spknorm_uttnorm/biaobei/spk_norm/0012.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/ablation_study_spknorm_uttnorm/biaobei/utt_norm/0012.wav" controls=""></audio></td>
         </tr>
-
+        
+        <tr>
+            <td align=center><audio src="./assets/ablation_study_spknorm_uttnorm/biaobei/Reference/0005.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/ablation_study_spknorm_uttnorm/zhibov2spk5_record/0002.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/ablation_study_spknorm_uttnorm/biaobei/spk_norm/0021.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/ablation_study_spknorm_uttnorm/biaobei/utt_norm/0021.wav" controls=""></audio></td>
+        </tr>
+        
+        <tr>
+            <td align=center><audio src="./assets/ablation_study_spknorm_uttnorm/biaobei/Reference/0006.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/ablation_study_spknorm_uttnorm/zhibov2spk5_record/0003.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/ablation_study_spknorm_uttnorm/biaobei/spk_norm/0041.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/ablation_study_spknorm_uttnorm/biaobei/utt_norm/0041.wav" controls=""></audio></td>
+        </tr>
+        
     </table>    
     </blockquote>
-
-    3. "No prison dress was allowed; no reception-room was provided, no soap, towels, or baths."
+    
+    2. Originbeat-S1
     <blockquote>
     <table>
         <tr>
-            <td align=center>Record</td>
-            <td align=center>WaveGlow</td>
-            <td align=center>EWG</td>
-            <td align=center>EWG G4</td>
-            <td align=center>EWG G8</td>
-            <td align=center>EWG SLC</td>
-            <td align=center>EWG SLC G8</td>
+            <td align=center>CSMSC Record (source)</td>
+            <td align=center>Noisy Podcast Record (target style)</td>
+            <td align=center>SpkNorm</td>
+            <td align=center>UttNorm (proposed)</td>
         </tr>
 
         <tr>
-            <td align=center><audio src="./assets/records/LJ004-0177.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/baseline_conv1d/LJ004-0177.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_conv1d/LJ004-0177.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_conv1d_g4/LJ004-0177.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_conv1d_g8/LJ004-0177.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_conv1d_slc/LJ004-0177.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_conv1d_slc_g8/LJ004-0177.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/ablation_study_spknorm_uttnorm/originbeats1/Reference/0004.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/ablation_study_spknorm_uttnorm/zhibov2spk5_record/0004.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/ablation_study_spknorm_uttnorm/originbeats1/spk_norm/0013.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/ablation_study_spknorm_uttnorm/originbeats1/utt_norm/0013.wav" controls=""></audio></td>
         </tr>
-
+        
+        <tr>
+            <td align=center><audio src="./assets/ablation_study_spknorm_uttnorm/originbeats1/Reference/0005.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/ablation_study_spknorm_uttnorm/zhibov2spk5_record/0005.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/ablation_study_spknorm_uttnorm/originbeats1/spk_norm/0015.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/ablation_study_spknorm_uttnorm/originbeats1/utt_norm/0015.wav" controls=""></audio></td>
+        </tr>
+        
+        <tr>
+            <td align=center><audio src="./assets/ablation_study_spknorm_uttnorm/originbeats1/Reference/0006.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/ablation_study_spknorm_uttnorm/zhibov2spk5_record/0006.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/ablation_study_spknorm_uttnorm/originbeats1/spk_norm/0021.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/ablation_study_spknorm_uttnorm/originbeats1/utt_norm/0021.wav" controls=""></audio></td>
+        </tr>
+        
     </table>    
     </blockquote>
-
-    4. "Painters, plasterers, and carpenters were allowed to follow their handicrafts, with the reward of sixpence per diem and a double allowance of food."
+        
+    3. Originbeat-S2
     <blockquote>
     <table>
         <tr>
-            <td align=center>Record</td>
-            <td align=center>WaveGlow</td>
-            <td align=center>EWG</td>
-            <td align=center>EWG G4</td>
-            <td align=center>EWG G8</td>
-            <td align=center>EWG SLC</td>
-            <td align=center>EWG SLC G8</td>
+            <td align=center>CSMSC Record (source)</td>
+            <td align=center>Noisy Podcast Record (target style)</td>
+            <td align=center>SpkNorm</td>
+            <td align=center>UttNorm (proposed)</td>
         </tr>
 
         <tr>
-            <td align=center><audio src="./assets/records/LJ004-0245.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/baseline_conv1d/LJ004-0245.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_conv1d/LJ004-0245.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_conv1d_g4/LJ004-0245.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_conv1d_g8/LJ004-0245.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_conv1d_slc/LJ004-0245.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_conv1d_slc_g8/LJ004-0245.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/ablation_study_spknorm_uttnorm/originbeats2/Reference/0004.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/ablation_study_spknorm_uttnorm/zhibov2spk5_record/0007.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/ablation_study_spknorm_uttnorm/originbeats2/spk_norm/0012.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/ablation_study_spknorm_uttnorm/originbeats2/utt_norm/0012.wav" controls=""></audio></td>
         </tr>
-
+        
+        <tr>
+            <td align=center><audio src="./assets/ablation_study_spknorm_uttnorm/originbeats2/Reference/0005.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/ablation_study_spknorm_uttnorm/zhibov2spk5_record/0008.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/ablation_study_spknorm_uttnorm/originbeats2/spk_norm/0021.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/ablation_study_spknorm_uttnorm/originbeats2/utt_norm/0021.wav" controls=""></audio></td>
+        </tr>
+        
+        <tr>
+            <td align=center><audio src="./assets/ablation_study_spknorm_uttnorm/originbeats2/Reference/0006.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/ablation_study_spknorm_uttnorm/zhibov2spk5_record/0009.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/ablation_study_spknorm_uttnorm/originbeats2/spk_norm/0025.wav" controls=""></audio></td>
+            <td align=center><audio src="./assets/ablation_study_spknorm_uttnorm/originbeats2/utt_norm/0025.wav" controls=""></audio></td>
+        </tr>
+        
     </table>    
     </blockquote>
 
-    5. "but I indulge a hope that many of them will contract with the counties,"
-    <blockquote>
-    <table>
-        <tr>
-            <td align=center>Record</td>
-            <td align=center>WaveGlow</td>
-            <td align=center>EWG</td>
-            <td align=center>EWG G4</td>
-            <td align=center>EWG G8</td>
-            <td align=center>EWG SLC</td>
-            <td align=center>EWG SLC G8</td>
-        </tr>
-
-        <tr>
-            <td align=center><audio src="./assets/records/LJ005-0169.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/baseline_conv1d/LJ005-0169.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_conv1d/LJ005-0169.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_conv1d_g4/LJ005-0169.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_conv1d_g8/LJ005-0169.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_conv1d_slc/LJ005-0169.wav" controls=""></audio></td>
-            <td align=center><audio src="./assets/fastwg_conv1d_slc_g8/LJ005-0169.wav" controls=""></audio></td>
-        </tr>
-
-    </table>    
-    </blockquote>
-
+    
 </body>
 </html>
